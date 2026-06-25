@@ -15,7 +15,6 @@ import {
   Hash,
   RotateCcw,
   FileJson,
-  RotateCw,
 } from "lucide-react";
 import { SAMPLE_JSON } from "@/constants/examples";
 import { toast } from "sonner";
@@ -171,7 +170,7 @@ function TreeNode({
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function JsonFormatterValidator() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(SAMPLE_JSON);
   const [output, setOutput] = useState("");
   const [view, setView] = useState<ViewMode>("formatted");
   const [validation, setValidation] = useState<ValidationState>("idle");
@@ -233,22 +232,16 @@ export function JsonFormatterValidator() {
       setValidation("error");
       setError(result.err);
       setErrorLineHighlight(result.err.line);
-      setParsedJson(null);
     } else {
       setValidation("valid");
       setError(null);
       setErrorLineHighlight(null);
-      setParsedJson(result.val);
     }
     setOutput("");
   }, [input]);
 
-  const loadExample = () => {
-    setInput(SAMPLE_JSON)
-  }
-
   const reset = () => {
-    setInput("");
+    setInput(SAMPLE_JSON);
     setOutput("");
     setValidation("idle");
     setError(null);
@@ -418,24 +411,15 @@ export function JsonFormatterValidator() {
                 </>
             )}
 
-            {!input && (
-              <button
-                onClick={loadExample}
-                className="px-2.5 py-1.5 text-xs font-medium text-purple-600 dark:text-purple-400 cursor-pointer"
-              >
-                Try Example
-              </button>
-            )}
-
-            {input && (
+            
               <button
                 onClick={reset}
                 className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
               >
-                <RotateCw className="w-3 h-3" />
+                <RotateCcw className="w-3 h-3" />
                 Reset
               </button>
-            )}
+            
           </div>
         </div>
 

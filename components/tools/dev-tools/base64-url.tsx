@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Check, RotateCw } from "lucide-react"
+import { Copy, Check, RotateCcw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 import { EXAMPLE_URL } from "@/constants/examples"
@@ -34,7 +34,7 @@ function transform(input: string, mode: Mode): { output: string; error?: string 
 
 export function Base64UrlTool() {
   const [mode, setMode] = useState<Mode>("base64-encode")
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState(EXAMPLE_URL)
   const [copied, setCopied] = useState(false)
 
   const { output, error } = transform(input, mode)
@@ -45,7 +45,7 @@ export function Base64UrlTool() {
   };
 
   const resetInput = () => {
-    setInput("")
+    setInput(EXAMPLE_URL)
   }
 
   const handleCopy = () => {
@@ -84,30 +84,15 @@ export function Base64UrlTool() {
           </label>
 
           <div className="flex gap-2 items-center">
-            {!input && (
-              <button
-                onClick={loadExample}
-                className="
-                  text-xs
-                  font-medium
-                  text-purple-600
-                  dark:text-purple-400
-                  transition-colors
-                  cursor-pointer
-                "
-              >
-                Try Example
-              </button>
-            )}
-            {input && (
+
               <button
                 onClick={resetInput}
                 className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
               >
-                <RotateCw className="w-3 h-3" />
+                <RotateCcw className="w-3 h-3" />
                 Reset
               </button>
-            )}
+            
           </div>
         </div>
 

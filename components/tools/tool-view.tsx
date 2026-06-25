@@ -3,6 +3,7 @@ import { CommitGenerator } from "./dev-tools/commit-generator"
 import { DiffCheckerTool } from "./dev-tools/diff-checker"
 import { JsonFormatterValidator } from "./dev-tools/json-formatter-validator"
 import { JwtDebuggerTool } from "./dev-tools/jwt-debugger"
+import { MarkdownPreview } from "./dev-tools/markdown-preview"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
 
@@ -24,6 +25,8 @@ export function ToolView({ toolId }: ToolViewProps) {
       return <JwtDebuggerTool />
     case "regex-tester":
       return <RegexTesterTool />
+    case "markdown-preview":
+      return <MarkdownPreview />
     // Add new tools here as you build them out
     default:
       return <PlaceholderTool toolId={toolId} />

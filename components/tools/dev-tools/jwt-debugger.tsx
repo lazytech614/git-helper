@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { AlertCircle, Check, Copy, RotateCw, ShieldCheck, ShieldX } from "lucide-react"
+import { AlertCircle, Check, Copy, RotateCcw, ShieldCheck, ShieldX } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
 import { SAMPLE_JWT } from "@/constants/examples"
@@ -96,7 +96,7 @@ function JsonPanel({
             "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
             copied
               ? "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10"
-              : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white cursor-pointer"
           )}
         >
           {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
@@ -113,7 +113,7 @@ function JsonPanel({
 // ── main component ─────────────────────────────────────────────────────────
 
 export function JwtDebuggerTool() {
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState(SAMPLE_JWT)
 
   const result = useMemo(
     () => (token.trim() ? parseJwt(token) : null),
@@ -132,23 +132,15 @@ export function JwtDebuggerTool() {
             JSON Web Token
           </label>
           <div className="flex gap-2 items-center">
-            {!token && (
+            
               <button
                 onClick={() => setToken(SAMPLE_JWT)}
-                className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors cursor-pointer"
+                className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer px-2.5"
               >
-                Try example
-              </button>
-            )}
-            {token && (
-              <button
-                onClick={() => setToken("")}
-                className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
-              >
-                <RotateCw className="w-3 h-3" />
+                <RotateCcw className="w-3 h-3" />
                 Reset
               </button>
-            )}
+            
           </div>
         </div>
         <textarea

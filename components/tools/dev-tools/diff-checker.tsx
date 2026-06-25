@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react"
 import { cn } from "@/lib/utils"
 import { EXAMPLE_MODIFIED, EXAMPLE_ORIGINAL } from "@/constants/examples";
-import { RotateCw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 
 type DiffLine =
   | { type: "added"; text: string }
@@ -59,8 +59,8 @@ const LINE_PREFIXES: Record<DiffLine["type"], string> = {
 }
 
 export function DiffCheckerTool() {
-  const [original, setOriginal] = useState("")
-  const [modified, setModified] = useState("")
+  const [original, setOriginal] = useState(EXAMPLE_ORIGINAL)
+  const [modified, setModified] = useState(EXAMPLE_MODIFIED)
   const [view, setView] = useState<"split" | "unified">("split")
 
   const diff = useMemo(
@@ -75,14 +75,9 @@ export function DiffCheckerTool() {
 
   const hasDiff = diff.length > 0
 
-  const loadExample = () => {
+  const resetInput = () => {
     setOriginal(EXAMPLE_ORIGINAL);
     setModified(EXAMPLE_MODIFIED);
-  };
-
-  const resetInput = () => {
-    setOriginal("");
-    setModified("");
   }
 
   return (
@@ -115,24 +110,15 @@ export function DiffCheckerTool() {
           )}
 
           <div className="flex gap-2">
-            {!hasDiff && (
-              <button
-                onClick={loadExample}
-                className="px-2.5 py-1.5 text-xs font-medium text-purple-600 dark:text-purple-400 cursor-pointer"
-              >
-                Try Example
-              </button>
-            )}
-
-            {hasDiff && (
+            
               <button
                 onClick={resetInput}
                 className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
               >
-                <RotateCw className="w-3 h-3" />
+                <RotateCcw className="w-3 h-3" />
                 Reset
               </button>
-            )}
+            
           </div>
         </div>
       </div>

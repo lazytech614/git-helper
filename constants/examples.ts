@@ -226,3 +226,61 @@ export const SAMPLE_JSON = `{
   "active": true,
   "count": 42
 }`;
+
+export const SAMPLE_MARKDOWN = `# GitHub Helper Docs
+
+Welcome to **GithubHelper** — AI-powered tools for your GitHub workflow.
+
+## Features
+
+- [x] Commit message generator
+- [x] PR description writer
+- [ ] Release notes *(coming soon)*
+- [ ] README generator *(coming soon)*
+
+## Supported Languages
+
+| Language   | Commit Gen | PR Desc | Release Notes |
+|------------|:----------:|:-------:|:-------------:|
+| TypeScript | ✅         | ✅      | 🔜            |
+| Python     | ✅         | ✅      | 🔜            |
+| Rust       | ✅         | ⚠️      | 🔜            |
+| Go         | ✅         | ✅      | 🔜            |
+
+## Quick Start
+
+\`\`\`bash
+# Install the CLI
+npm install -g githubhelper
+
+# Generate a commit message from staged changes
+gh-helper commit
+\`\`\`
+
+## Architecture
+
+\`\`\`mermaid
+graph TD
+    A[Git Diff] --> B[GithubHelper AI]
+    B --> C{Output Type}
+    C -->|commit| D[Commit Message]
+    C -->|pr| E[PR Description]
+    C -->|release| F[Release Notes]
+\`\`\`
+
+## Example Commit
+
+\`\`\`typescript
+const message = await generateCommit({
+  diff: gitDiff,
+  style: "conventional",
+});
+// → "feat(auth): add OAuth2 provider support"
+\`\`\`
+
+> **Note:** GithubHelper respects your \`.gitignore\` and never sends sensitive files to the AI.
+
+---
+
+Made with ❤️ by [GithubHelper](https://githubhelper.dev)
+`;

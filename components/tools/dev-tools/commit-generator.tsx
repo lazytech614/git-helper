@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { AlertCircle, Check, Copy, Loader2 } from "lucide-react"
+import { AlertCircle, Check, Copy, Loader2, RotateCw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SAMPLE_DIFF } from "@/constants/examples"
 import { toast } from "sonner"
@@ -95,12 +95,25 @@ export function CommitGenerator() {
           <label className="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-zinc-500">
             Git Diff
           </label>
-          <button
-            onClick={() => setDiff(SAMPLE_DIFF)}
-            className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors cursor-pointer"
-          >
-            Try example
-          </button>
+          <div className="flex gap-2 items-center">
+            {!diff && (
+              <button
+                onClick={() => setDiff(SAMPLE_DIFF)}
+                className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors cursor-pointer"
+              >
+                Try example
+              </button>
+            )}
+            {diff && (
+              <button
+                onClick={() => setDiff("")}
+                className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <RotateCw className="w-3 h-3" />
+                Reset
+              </button>
+            )}
+          </div>
         </div>
         <textarea
           value={diff}

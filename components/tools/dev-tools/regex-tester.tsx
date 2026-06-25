@@ -344,13 +344,15 @@ export function RegexTesterTool() {
           <label className="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-zinc-500">
             Pattern
           </label>
-          <button
-            onClick={resetForm}
-            className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
-          >
-            <RotateCw className="w-3 h-3" />
-            Reset
-          </button>
+          {input && (
+            <button
+              onClick={resetForm}
+              className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
+            >
+              <RotateCw className="w-3 h-3" />
+              Reset
+            </button>
+          )}
         </div>
 
         <div className="flex items-stretch rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden focus-within:ring-2 focus-within:ring-purple-500/40 focus-within:border-purple-400 dark:focus-within:border-purple-500/60 transition-colors bg-zinc-50 dark:bg-zinc-900">

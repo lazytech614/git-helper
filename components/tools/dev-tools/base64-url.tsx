@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Copy, Check } from "lucide-react"
+import { Copy, Check, RotateCw } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
+import { EXAMPLE_URL } from "@/constants/examples"
 
 type Mode = "base64-encode" | "base64-decode" | "url-encode" | "url-decode"
 
@@ -38,6 +39,15 @@ export function Base64UrlTool() {
 
   const { output, error } = transform(input, mode)
 
+  const loadExample = () => {
+    setMode("base64-encode");
+    setInput(EXAMPLE_URL);
+  };
+
+  const resetInput = () => {
+    setInput("")
+  }
+
   const handleCopy = () => {
     if (!output) return
     navigator.clipboard.writeText(output)
@@ -68,15 +78,71 @@ export function Base64UrlTool() {
 
       {/* Input */}
       <div className="flex flex-col gap-2">
-        <label className="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-zinc-500">
-          Input
-        </label>
+        <div className="flex items-center justify-between">
+          <label className="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-zinc-500">
+            Input
+          </label>
+
+          <div className="flex gap-2 items-center">
+            {!input && (
+              <button
+                onClick={loadExample}
+                className="
+                  text-xs
+                  font-medium
+                  text-purple-600
+                  dark:text-purple-400
+                  transition-colors
+                  cursor-pointer
+                "
+              >
+                Try Example
+              </button>
+            )}
+            {input && (
+              <button
+                onClick={resetInput}
+                className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <RotateCw className="w-3 h-3" />
+                Reset
+              </button>
+            )}
+          </div>
+        </div>
+
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Paste your text here..."
           rows={8}
-          className="w-full rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-3 font-mono text-xs text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/40 resize-y"
+          className="
+            w-full
+            rounded-lg
+            border
+            border-zinc-200
+            dark:border-zinc-800
+
+            bg-zinc-50
+            dark:bg-zinc-900
+
+            p-3
+
+            font-mono
+            text-xs
+
+            text-zinc-900
+            dark:text-zinc-100
+
+            placeholder:text-zinc-400
+            dark:placeholder:text-zinc-600
+
+            focus:outline-none
+            focus:ring-2
+            focus:ring-purple-500/40
+
+            resize-y
+          "
         />
       </div>
 

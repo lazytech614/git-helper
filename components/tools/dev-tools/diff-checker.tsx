@@ -2,6 +2,8 @@
 
 import { useState, useMemo } from "react"
 import { cn } from "@/lib/utils"
+import { EXAMPLE_MODIFIED, EXAMPLE_ORIGINAL } from "@/constants/examples";
+import { RotateCw } from "lucide-react";
 
 type DiffLine =
   | { type: "added"; text: string }
@@ -73,6 +75,16 @@ export function DiffCheckerTool() {
 
   const hasDiff = diff.length > 0
 
+  const loadExample = () => {
+    setOriginal(EXAMPLE_ORIGINAL);
+    setModified(EXAMPLE_MODIFIED);
+  };
+
+  const resetInput = () => {
+    setOriginal("");
+    setModified("");
+  }
+
   return (
     <div className="flex flex-col gap-6">
       {/* Controls */}
@@ -94,12 +106,35 @@ export function DiffCheckerTool() {
           ))}
         </div>
 
-        {hasDiff && (
-          <div className="flex gap-3 text-xs font-medium">
-            <span className="text-emerald-600 dark:text-emerald-400">+{stats.added} added</span>
-            <span className="text-red-500 dark:text-red-400">−{stats.removed} removed</span>
+        <div className="flex gap-2 items-center">
+          {hasDiff && (
+            <div className="flex gap-3 text-xs font-medium">
+              <span className="text-emerald-600 dark:text-emerald-400">+{stats.added} added</span>
+              <span className="text-red-500 dark:text-red-400">−{stats.removed} removed</span>
+            </div>
+          )}
+
+          <div className="flex gap-2">
+            {!hasDiff && (
+              <button
+                onClick={loadExample}
+                className="px-2.5 py-1.5 text-xs font-medium text-purple-600 dark:text-purple-400 cursor-pointer"
+              >
+                Try Example
+              </button>
+            )}
+
+            {hasDiff && (
+              <button
+                onClick={resetInput}
+                className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <RotateCw className="w-3 h-3" />
+                Reset
+              </button>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Inputs */}

@@ -1,9 +1,10 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { AlertCircle, Check, Copy, ShieldCheck, ShieldX } from "lucide-react"
+import { AlertCircle, Check, Copy, RotateCw, ShieldCheck, ShieldX } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
+import { SAMPLE_JWT } from "@/constants/examples"
 
 // ── helpers ────────────────────────────────────────────────────────────────
 
@@ -111,9 +112,6 @@ function JsonPanel({
 
 // ── main component ─────────────────────────────────────────────────────────
 
-const SAMPLE_JWT =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjk5OTk5OTk5OTl9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-
 export function JwtDebuggerTool() {
   const [token, setToken] = useState("")
 
@@ -133,12 +131,25 @@ export function JwtDebuggerTool() {
           <label className="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-zinc-500">
             JSON Web Token
           </label>
-          <button
-            onClick={() => setToken(SAMPLE_JWT)}
-            className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
-          >
-            Try example
-          </button>
+          <div className="flex gap-2 items-center">
+            {!token && (
+              <button
+                onClick={() => setToken(SAMPLE_JWT)}
+                className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors cursor-pointer"
+              >
+                Try example
+              </button>
+            )}
+            {token && (
+              <button
+                onClick={() => setToken("")}
+                className="text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <RotateCw className="w-3 h-3" />
+                Reset
+              </button>
+            )}
+          </div>
         </div>
         <textarea
           value={token}

@@ -7,6 +7,7 @@ import { JwtDebuggerTool } from "./dev-tools/jwt-debugger"
 import { MarkdownPreview } from "./dev-tools/markdown-preview"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
+import { UuidGenerator } from "./dev-tools/uuid-generator"
 
 interface ToolViewProps {
   toolId: string
@@ -30,6 +31,8 @@ export function ToolView({ toolId }: ToolViewProps) {
       return <MarkdownPreview />
     case "hash-generator":
       return <HashGenerator />
+    case "uuid-generator":
+      return <UuidGenerator />
     // Add new tools here as you build them out
     default:
       return <PlaceholderTool toolId={toolId} />

@@ -4,17 +4,11 @@ import Link from "next/link";
 import { GitFork, Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Container } from "../shared/container";
+import { Container } from "./container";
 import { ModeToggle } from "../providers/mode-toggle";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import { MobileSidebar } from "./mobile-sidebar";
+import { MobileSidebar } from "../landing/mobile-sidebar";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   {
@@ -32,6 +26,8 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200/50 bg-white/80 backdrop-blur-xl dark:border-zinc-800/50 dark:bg-black/80">
       <Container>
@@ -47,16 +43,44 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-2">
+            {navLinks.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/" &&
+                  pathname.startsWith(link.href));
+
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`
+                    relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-200
+                    ${
+                      isActive
+                        ? `
+                          bg-purple-100
+                          text-purple-700
+
+                          dark:bg-purple-500/10
+                          dark:text-purple-400
+                          `
+                        : `
+                          text-zinc-600
+                          hover:text-zinc-900
+                          hover:bg-zinc-100
+
+                          dark:text-zinc-400
+                          dark:hover:text-white
+                          dark:hover:bg-zinc-900
+                          `
+                    }
+                  `}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right Side */}

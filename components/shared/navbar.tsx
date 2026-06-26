@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
+import { DiCodeigniter } from "react-icons/di";
 
 
 import { Button } from "@/components/ui/button";
@@ -39,7 +40,8 @@ export function Navbar() {
         <div className="flex h-20 items-center justify-between">
           <div className="flex gap-4 items-center">
             {/* Logo */}
-            <Link href="/">
+            <Link href="/" className="flex items-center">
+              <DiCodeigniter className="h-5 w-5" />
               <h1 className="text-2xl font-extrabold text-zinc-900 dark:text-white">
                 Tool
                 <span className="bg-linear-to-r from-purple-600 to-violet-600 dark:from-purple-400 dark:to-violet-500 bg-clip-text text-transparent">

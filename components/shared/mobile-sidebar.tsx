@@ -14,7 +14,6 @@ import { Separator } from "@/components/ui/separator";
 
 import {
   Menu,
-  GitFork,
   ArrowUpRight,
   ChevronRight,
   LayoutGrid,
@@ -22,6 +21,8 @@ import {
   DollarSign,
   Zap,
 } from "lucide-react";
+import { DiCodeigniter } from "react-icons/di";
+import { FaGithub } from "react-icons/fa";
 
 const links = [
   {
@@ -81,28 +82,13 @@ export function MobileSidebar() {
               Navigation
             </SheetTitle>
 
-            <div className="flex items-center gap-3">
-              <div
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-purple-100
-                  dark:bg-purple-500/15
-                "
-              >
-                <Zap className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-              </div>
-
+            <div className="flex items-center">
+              <DiCodeigniter className="h-5 w-5" />
               <div>
                 <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-                  GitHub
+                  Tool
                   <span className="text-purple-600 dark:text-purple-400">
-                    {" "}
-                    Helper
+                    Stack
                   </span>
                 </h2>
               </div>
@@ -208,7 +194,7 @@ export function MobileSidebar() {
               "
             >
               <div className="flex items-center gap-3">
-                <GitFork className="h-5 w-5" />
+                <FaGithub className="h-5 w-5" />
 
                 <span className="font-medium">
                   Star on GitHub

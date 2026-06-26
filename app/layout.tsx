@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import "./globals.css";
+
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Navbar } from "@/components/shared/navbar";
 import { Footer } from "@/components/shared/footer";
@@ -12,14 +14,108 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Tool Stack",
-  description: "Use different types of development tools completely free of any cost.",
-  keywords: ["git", "commit", "generator", "AI", "Development", "Tools", "Tool Stack"],
-  authors: [{ name: "Tool Stack" }],
+  metadataBase: new URL("https://tool-stack-kappa.vercel.app/"), 
+
+  title: {
+    default: "Tool Stack",
+    template: "%s | Tool Stack",
+  },
+
+  description:
+    "Free developer tools for formatting, debugging, generating, validating, converting and optimizing code. Built for developers, engineers and open-source contributors.",
+
+  applicationName: "Tool Stack",
+
+  keywords: [
+    "developer tools",
+    "online tools",
+    "json formatter",
+    "sql formatter",
+    "jwt debugger",
+    "regex tester",
+    "commit generator",
+    "markdown preview",
+    "base64 encoder",
+    "url encoder",
+    "developer utilities",
+    "frontend tools",
+    "backend tools",
+    "tool stack",
+    "opensource tools",
+  ],
+
+  authors: [
+    {
+      name: "Tool Stack",
+      url: "https://tool-stack-kappa.vercel.app/",
+    },
+  ],
+
+  creator: "Tool Stack",
+  publisher: "Tool Stack",
+
+  robots: {
+    index: true,
+    follow: true,
+
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "/",
+  },
+
   openGraph: {
     title: "Tool Stack",
-    description: "Use different types of development tools completely free of any cost.",
+    description:
+      "A collection of modern developer tools to boost productivity and simplify development workflows.",
+
+    url: "https://tool-stack-kappa.vercel.app/",
+    siteName: "Tool Stack",
+
+    locale: "en_US",
+
     type: "website",
+
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Tool Stack",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Tool Stack",
+    description:
+      "Free developer tools for formatting, debugging, generating, validating and optimizing code.",
+
+    images: ["/og-image.png"],
+
+    creator: "@yourhandle",
+  },
+
+  category: "technology",
+
+  icons: {
+    icon: "/favicon.ico",
+
+    shortcut: "/favicon-32x32.png",
+
+    apple: "/apple-touch-icon.png",
+  },
+
+  other: {
+    "theme-color": "#9333EA",
   },
 };
 
@@ -31,10 +127,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased`}
       suppressHydrationWarning
+      className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50">
+      <body className="min-h-full flex flex-col bg-white text-zinc-900 dark:bg-black dark:text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -42,9 +138,14 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
-          <Toaster richColors />
+
+          <main className="flex-1">
+            {children}
+          </main>
+
           <Footer />
+
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

@@ -8,6 +8,7 @@ import { JwtDebuggerTool } from "./dev-tools/jwt-debugger"
 import { MarkdownPreview } from "./dev-tools/markdown-preview"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
+import SqlFormatter from "./dev-tools/sql-formatter"
 import { UuidGenerator } from "./dev-tools/uuid-generator"
 
 interface ToolViewProps {
@@ -36,6 +37,8 @@ export function ToolView({ toolId }: ToolViewProps) {
       return <UuidGenerator />
     case "binary-converter":
       return <BinaryConverter />
+    case "sql-formatter":
+      return <SqlFormatter />
     // Add new tools here as you build them out
     default:
       return <PlaceholderTool toolId={toolId} />

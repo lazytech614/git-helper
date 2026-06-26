@@ -10,6 +10,7 @@ import { JwtDebuggerTool } from "./dev-tools/jwt-debugger"
 import { LoremIpsum } from "./dev-tools/loremipsum"
 import { MarkdownPreview } from "./dev-tools/markdown-preview"
 import { MarkdownTable } from "./dev-tools/markdown-table"
+import { NumberBaseConverter } from "./dev-tools/number-base-converter"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
 import { SqlFormatter } from "./dev-tools/sql-formatter"
@@ -54,6 +55,8 @@ export function ToolView({ toolId }: ToolViewProps) {
       return <ColorConverter />
     case "unix-timestamp":
       return <UnixTimestampConverter />
+    case "number-base-converter":
+      return <NumberBaseConverter />
     // Add new tools here as you build them out
     default:
       return <PlaceholderTool toolId={toolId} />

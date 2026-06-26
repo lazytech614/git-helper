@@ -352,13 +352,13 @@ export const ALL_TOOLS: Tool[] = [
     },
   },
   {
-    id: "number-base",
+    id: "number-base-converter",
     name: "Number Base Converter",
     description:
       "Convert numbers between binary, octal, decimal, and hexadecimal bases.",
     icon: Calculator,
     category: "Converter",
-    href: "/tools/number-base",
+    href: "/tools/number-base-converter",
     seo: {
       title: "Number Base Converter – Binary, Octal, Hex | Tool Stack",
       description:

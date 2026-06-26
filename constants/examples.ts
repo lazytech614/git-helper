@@ -1,3 +1,4 @@
+import { TableState } from "@/components/tools/dev-tools/markdown-table";
 import { RegexTemplate } from "@/components/tools/dev-tools/regex-tester";
 import { Dialect } from "@/types/dev-tools/sql-formatter";
 
@@ -314,3 +315,14 @@ export const SQL_KEYWORDS = [
   "PARTITION","WINDOW","ROW_NUMBER","RANK","DENSE_RANK","NULLIF","IIF",
   "TOP","ROWNUM","FETCH","NEXT","ROWS","ONLY","ADD","COLUMN","MODIFY",
 ]
+
+export const SAMPLE_MARKDOWN_TABLE: TableState = {
+  headers: ["Name", "Role"],
+  alignments: ["left", "center"],
+  rows: [
+    ["Alice", "Engineer"],
+    ["Bob", "Designer"],
+    ["Carol", "Manager"],
+    ["Dan", "Engineer"],
+  ],
+}

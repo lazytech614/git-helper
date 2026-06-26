@@ -6,6 +6,7 @@ import { HashGenerator } from "./dev-tools/hash-generator"
 import { JsonFormatterValidator } from "./dev-tools/json-formatter-validator"
 import { JwtDebuggerTool } from "./dev-tools/jwt-debugger"
 import { MarkdownPreview } from "./dev-tools/markdown-preview"
+import { MarkdownTable } from "./dev-tools/markdown-table"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
 import { SqlFormatter } from "./dev-tools/sql-formatter"
@@ -39,6 +40,8 @@ export function ToolView({ toolId }: ToolViewProps) {
       return <BinaryConverter />
     case "sql-formatter":
       return <SqlFormatter />
+    case "markdown-table":
+      return <MarkdownTable />
     // Add new tools here as you build them out
     default:
       return <PlaceholderTool toolId={toolId} />

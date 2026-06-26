@@ -13,6 +13,7 @@ import { MarkdownTable } from "./dev-tools/markdown-table"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
 import { SqlFormatter } from "./dev-tools/sql-formatter"
+import { UnixTimestampConverter } from "./dev-tools/timestamp-converter"
 import { UuidGenerator } from "./dev-tools/uuid-generator"
 
 interface ToolViewProps {
@@ -51,6 +52,8 @@ export function ToolView({ toolId }: ToolViewProps) {
       return <JsonToSchema />
     case "color-converter":
       return <ColorConverter />
+    case "unix-timestamp":
+      return <UnixTimestampConverter />
     // Add new tools here as you build them out
     default:
       return <PlaceholderTool toolId={toolId} />

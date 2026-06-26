@@ -8,7 +8,7 @@ import { JwtDebuggerTool } from "./dev-tools/jwt-debugger"
 import { MarkdownPreview } from "./dev-tools/markdown-preview"
 import { PlaceholderTool } from "./dev-tools/placeholder-tool"
 import { RegexTesterTool } from "./dev-tools/regex-tester"
-import SqlFormatter from "./dev-tools/sql-formatter"
+import { SqlFormatter } from "./dev-tools/sql-formatter"
 import { UuidGenerator } from "./dev-tools/uuid-generator"
 
 interface ToolViewProps {

@@ -1,4 +1,5 @@
 import { RegexTemplate } from "@/components/tools/dev-tools/regex-tester";
+import { Dialect } from "@/components/tools/dev-tools/sql-formatter";
 
 export const SAMPLE_DIFF = `
 diff --git a/src/auth.ts b/src/auth.ts
@@ -288,3 +289,29 @@ Made with ❤️ by [GithubHelper](https://githubhelper.dev)
 export const SAMPLE_TEXT = "Hello World!"
 
 export const SAMPLE_BINARY = "01001000 01100101 01101100 01101100 01101111"
+
+export const EXAMPLE_SQL = `select u.id,u.name,u.email,o.total,o.created_at from users u inner join orders o on u.id=o.user_id where u.active=true and o.total>100 order by o.created_at desc limit 50;`
+
+export const DIALECTS: { value: Dialect; label: string }[] = [
+  { value: "sql", label: "ANSI SQL" },
+  { value: "postgresql", label: "PostgreSQL" },
+  { value: "mysql", label: "MySQL" },
+  { value: "sqlite", label: "SQLite" },
+  { value: "tsql", label: "SQL Server" },
+  { value: "oracle", label: "Oracle" },
+  { value: "mariadb", label: "MariaDB" },
+]
+
+export const SQL_KEYWORDS = [
+  "SELECT","FROM","WHERE","AND","OR","NOT","IN","IS","NULL","LIKE","BETWEEN",
+  "EXISTS","JOIN","INNER","LEFT","RIGHT","FULL","OUTER","CROSS","ON","AS",
+  "INSERT","INTO","VALUES","UPDATE","SET","DELETE","CREATE","TABLE","ALTER",
+  "DROP","INDEX","VIEW","TRIGGER","PROCEDURE","FUNCTION","DATABASE","SCHEMA",
+  "ORDER","BY","GROUP","HAVING","LIMIT","OFFSET","UNION","ALL","DISTINCT",
+  "CASE","WHEN","THEN","ELSE","END","WITH","RETURNING","PRIMARY","KEY",
+  "FOREIGN","REFERENCES","CONSTRAINT","UNIQUE","DEFAULT","CHECK","IF",
+  "BEGIN","COMMIT","ROLLBACK","TRANSACTION","EXPLAIN","ANALYZE","DESC","ASC",
+  "TRUE","FALSE","COUNT","SUM","AVG","MIN","MAX","COALESCE","CAST","OVER",
+  "PARTITION","WINDOW","ROW_NUMBER","RANK","DENSE_RANK","NULLIF","IIF",
+  "TOP","ROWNUM","FETCH","NEXT","ROWS","ONLY","ADD","COLUMN","MODIFY",
+]

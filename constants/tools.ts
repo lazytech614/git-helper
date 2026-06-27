@@ -61,7 +61,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/commit-generator",
     status: "BETA",
     seo: {
-      title: "AI Git Commit Message Generator | Tool Stack",
+      title: "AI Git Commit Message Generator ",
       description:
         "Generate meaningful Git commit messages from your code changes instantly. Supports Conventional Commits and AI-powered suggestions.",
       keywords: [
@@ -83,7 +83,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/diff-checker",
     status: "ACTIVE",
     seo: {
-      title: "Online Diff Checker – Compare Text & Code | Tool Stack",
+      title: "Online Diff Checker – Compare Text & Code ",
       description:
         "Compare two text blocks side by side and highlight additions, deletions, and unchanged lines. Supports split and inline diff views.",
       keywords: [
@@ -105,7 +105,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/base64-url",
     status: "ACTIVE",
     seo: {
-      title: "Base64 & URL Encoder / Decoder Online | Tool Stack",
+      title: "Base64 & URL Encoder / Decoder Online ",
       description:
         "Encode and decode Base64 strings and URL-encode or decode query parameters instantly in your browser. No data leaves your machine.",
       keywords: [
@@ -126,7 +126,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Preview",
     href: "/tools/html-preview",
     seo: {
-      title: "Live HTML Preview Editor Online | Tool Stack",
+      title: "Live HTML Preview Editor Online ",
       description:
         "Write raw HTML and see a real-time rendered preview in a sandboxed iframe. Perfect for quick prototyping and HTML snippet testing.",
       keywords: [
@@ -147,7 +147,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utilities",
     href: "/tools/clipboard-manager",
     seo: {
-      title: "Online Clipboard Manager – Save Text Snippets | Tool Stack",
+      title: "Online Clipboard Manager – Save Text Snippets ",
       description:
         "Store, organize, and instantly recall frequently used text snippets. A lightweight clipboard manager that lives in your browser.",
       keywords: [
@@ -169,7 +169,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/json-formatter-validator",
     isNew: false,
     seo: {
-      title: "JSON Formatter, Validator & Minifier Online | Tool Stack",
+      title: "JSON Formatter, Validator & Minifier Online ",
       description:
         "Prettify and validate JSON with syntax highlighting and collapsible tree nodes. Also supports JSON minification for production use.",
       keywords: [
@@ -190,7 +190,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Formatting",
     href: "/tools/sql-formatter",
     seo: {
-      title: "SQL Formatter & Beautifier Online | Tool Stack",
+      title: "SQL Formatter & Beautifier Online ",
       description:
         "Instantly format and beautify SQL queries with proper indentation and keyword highlighting. Supports MySQL, PostgreSQL, and more.",
       keywords: [
@@ -212,7 +212,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/json-to-schema",
     isNew: true,
     seo: {
-      title: "JSON to JSON Schema Generator Online | Tool Stack",
+      title: "JSON to JSON Schema Generator Online ",
       description:
         "Paste any JSON document and automatically generate a valid JSON Schema. Ideal for API documentation, validation, and TypeScript type generation.",
       keywords: [
@@ -233,7 +233,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Preview",
     href: "/tools/markdown-preview",
     seo: {
-      title: "Live Markdown Preview Editor with GFM Support | Tool Stack",
+      title: "Live Markdown Preview Editor with GFM Support ",
       description:
         "Write Markdown and see the rendered HTML output in real-time. Supports GitHub Flavored Markdown including tables, task lists, and code blocks.",
       keywords: [
@@ -254,7 +254,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Generator",
     href: "/tools/markdown-table",
     seo: {
-      title: "Markdown Table Generator – Visual Editor | Tool Stack",
+      title: "Markdown Table Generator – Visual Editor ",
       description:
         "Build Markdown tables using a spreadsheet-style editor and copy the formatted result instantly. No manual pipe formatting required.",
       keywords: [
@@ -275,7 +275,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Generator",
     href: "/tools/hash-generator",
     seo: {
-      title: "MD5, SHA-1, SHA-256 & SHA-512 Hash Generator | Tool Stack",
+      title: "MD5, SHA-1, SHA-256 & SHA-512 Hash Generator ",
       description:
         "Generate cryptographic hashes from any text or file. Supports MD5, SHA-1, SHA-256, and SHA-512 — all computed offline in your browser.",
       keywords: [
@@ -296,7 +296,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Converter",
     href: "/tools/color-converter",
     seo: {
-      title: "Color Converter – HEX, RGB, HSL & HSV Online | Tool Stack",
+      title: "Color Converter – HEX, RGB, HSL & HSV Online ",
       description:
         "Convert colors between HEX, RGB, HSL, and HSV formats instantly with a visual color picker. Great for designers and frontend developers.",
       keywords: [
@@ -317,7 +317,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Converter",
     href: "/tools/unix-timestamp",
     seo: {
-      title: "Unix Timestamp Converter – Epoch to Date | Tool Stack",
+      title: "Unix Timestamp Converter – Epoch to Date ",
       description:
         "Convert Unix epoch timestamps to human-readable dates and vice versa. Supports all major timezones and millisecond precision.",
       keywords: [
@@ -338,7 +338,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utilities",
     href: "/tools/url-parser",
     seo: {
-      title: "URL Parser & Dissector Online | Tool Stack",
+      title: "URL Parser & Dissector Online ",
       description:
         "Break down any URL into its individual components — protocol, hostname, path, query parameters, and fragment. Useful for debugging and API work.",
       keywords: [
@@ -359,7 +359,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Converter",
     href: "/tools/number-base-converter",
     seo: {
-      title: "Number Base Converter – Binary, Octal, Hex | Tool Stack",
+      title: "Number Base Converter – Binary, Octal, Hex ",
       description:
         "Convert numbers between binary, octal, decimal, and hexadecimal instantly. Ideal for programmers working with low-level data or bitwise operations.",
       keywords: [
@@ -381,7 +381,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/image-converter",
     isNew: true,
     seo: {
-      title: "Online Image Converter – PNG, JPEG, WebP, SVG | Tool Stack",
+      title: "Online Image Converter – PNG, JPEG, WebP, SVG ",
       description:
         "Convert images between PNG, JPEG, WebP, and SVG formats directly in your browser. No upload required — all processing is done client-side.",
       keywords: [
@@ -402,7 +402,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Generator",
     href: "/tools/lorem-ipsum",
     seo: {
-      title: "Lorem Ipsum Generator – Placeholder Text | Tool Stack",
+      title: "Lorem Ipsum Generator – Placeholder Text ",
       description:
         "Generate Lorem Ipsum placeholder text by paragraphs, sentences, or words. Customize length and copy instantly for mockups and design work.",
       keywords: [
@@ -424,7 +424,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/jwt-debugger",
     status: "BETA",
     seo: {
-      title: "JWT Debugger – Decode & Verify JSON Web Tokens | Tool Stack",
+      title: "JWT Debugger – Decode & Verify JSON Web Tokens ",
       description:
         "Decode and inspect JWT headers, payloads, and signatures. Fully offline signature validation — your tokens never leave the browser.",
       keywords: [
@@ -444,7 +444,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Generator",
     href: "/tools/uuid-generator",
     seo: {
-      title: "UUID Generator – v1, v4 & v5 in Bulk | Tool Stack",
+      title: "UUID Generator – v1, v4 & v5 in Bulk ",
       description:
         "Generate RFC-compliant UUIDs in v1, v4, and v5 formats. Bulk generation and formatting options included — all client-side.",
       keywords: [
@@ -465,7 +465,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Preview",
     href: "/tools/csv-viewer",
     seo: {
-      title: "Online CSV Viewer – Sortable & Filterable Table | Tool Stack",
+      title: "Online CSV Viewer – Sortable & Filterable Table ",
       description:
         "Paste or upload a CSV file and instantly view it as a sortable, filterable table. No server upload — everything runs in the browser.",
       keywords: [
@@ -486,7 +486,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Encoding",
     href: "/tools/binary-converter",
     seo: {
-      title: "Binary to Text Converter – Encode & Decode | Tool Stack",
+      title: "Binary to Text Converter – Encode & Decode ",
       description:
         "Convert plain text to binary (0s and 1s) and decode binary strings back to readable text. Fast, offline, and no data stored.",
       keywords: [
@@ -508,7 +508,7 @@ export const ALL_TOOLS: Tool[] = [
     href: "/tools/regex-tester",
     status: "ACTIVE",
     seo: {
-      title: "Regex Tester – Live Match Highlighting & Group Captures | Tool Stack",
+      title: "Regex Tester – Live Match Highlighting & Group Captures ",
       description:
         "Test and debug regular expressions in real-time with live match highlighting, capture group inspection, and flag toggles (g, i, m, s).",
       keywords: [
@@ -529,7 +529,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utilities",
     href: "/tools/ip-lookup",
     seo: {
-      title: "IP Address Lookup – Geolocation & ISP Info | Tool Stack",
+      title: "IP Address Lookup – Geolocation & ISP Info ",
       description:
         "Look up geolocation, ISP, ASN, and network details for any IPv4 or IPv6 address. Instant results with no account required.",
       keywords: [
@@ -550,7 +550,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utilities",
     href: "/tools/minifier",
     seo: {
-      title: "HTML, CSS & JS Code Minifier Online | Tool Stack",
+      title: "HTML, CSS & JS Code Minifier Online ",
       description:
         "Minify HTML, CSS, and JavaScript files to reduce bundle size for production. Fast, browser-based minification with no file upload needed.",
       keywords: [
@@ -571,7 +571,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utilities",
     href: "/tools/side-by-side",
     seo: {
-      title: "Side-by-Side Tool View – Split Pane Layout | Tool Stack",
+      title: "Side-by-Side Tool View – Split Pane Layout ",
       description:
         "Run two developer tools simultaneously in a resizable split-pane layout. Perfect for comparing outputs or multitasking across tools.",
       keywords: [
@@ -592,7 +592,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Generator",
     href: "/tools/readme-generator",
     seo: {
-      title: "README Generator for GitHub Projects | Tool Stack",
+      title: "README Generator for GitHub Projects ",
       description:
         "Create professional GitHub README files in minutes. Generate markdown with project descriptions, installation guides, usage examples, badges, contributing guidelines, license, and more.",
       keywords: [

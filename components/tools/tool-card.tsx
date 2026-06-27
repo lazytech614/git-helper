@@ -117,7 +117,7 @@ export function ToolCard({ tool, isPinned, onTogglePin }: ToolCardProps) {
           <h3 className="text-lg sm:text-xl font-extrabold text-zinc-900 dark:text-white leading-tight uppercase">
             {tool.name}
           </h3>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-3">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-2">
             {tool.description}
           </p>
         </div>

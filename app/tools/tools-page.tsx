@@ -4,10 +4,10 @@ import { useState, useMemo } from "react"
 import { Container } from "@/components/shared/container"
 import { PageHeading } from "@/components/shared/page-heading"
 import { ALL_TOOLS, CATEGORIES, ToolCategory } from "@/constants/tools"
-import { StatusBar } from "@/components/tools/satus-bar"
+import { StatusBar } from "@/components/shared/satus-bar"
 import { SearchBar } from "@/components/shared/search-bar"
-import { CategoryFilter } from "@/components/tools/category-filter"
-import { SecondarySectionHeader } from "@/components/shared/secondary-section-header"
+import { CategoryFilter } from "@/components/shared/category-filter"
+import { SecondaryHeading } from "@/components/shared/secondary-heading"
 import { ToolsGrid } from "@/components/tools/tools-grid"
 
 const PINNED_STORAGE_KEY = "dev-tools:pinned"
@@ -74,7 +74,11 @@ const ToolsPage = () => {
             description="Essential developer tools and offline code converters."
           />
           <div className="text-left md:text-right md:shrink-0">
-            <StatusBar tools={ALL_TOOLS} />
+            <StatusBar
+              items={ALL_TOOLS}
+              getName={(tool) => tool.name}
+              itemLabel="tool"
+            />
           </div>
         </div>
 
@@ -96,7 +100,7 @@ const ToolsPage = () => {
         {/* When filtering, show a flat merged list */}
         {isFiltering ? (
           <section className="mt-10">
-            <SecondarySectionHeader
+            <SecondaryHeading
               title="Results"
               description={
                 filteredTools.length === 0
@@ -119,7 +123,7 @@ const ToolsPage = () => {
             {/* Pinned tools */}
             {pinnedIds.length > 0 && (
               <section className="mt-10">
-                <SecondarySectionHeader
+                <SecondaryHeading
                   title="Pinned Tools"
                   description="Your saved tools appear here first."
                   count={pinnedTools.length}
@@ -136,7 +140,7 @@ const ToolsPage = () => {
 
             {/* All other tools */}
             <section className={pinnedIds.length > 0 ? "mt-12" : "mt-10"}>
-              <SecondarySectionHeader
+              <SecondaryHeading
                 title={pinnedIds.length > 0 ? "All Other Tools" : "All Tools"}
                 description={
                   pinnedIds.length > 0

@@ -16,36 +16,11 @@ import {
   Menu,
   ArrowUpRight,
   ChevronRight,
-  LayoutGrid,
-  Sparkles,
-  DollarSign,
   Zap,
 } from "lucide-react";
 import { DiCodeigniter } from "react-icons/di";
 import { FaGithub } from "react-icons/fa";
-
-const links = [
-  {
-    title: "Home",
-    href: "/",
-    icon: LayoutGrid,
-  },
-  {
-    title: "Tools",
-    href: "/tools",
-    icon: LayoutGrid,
-  },
-  {
-    title: "Features",
-    href: "/features",
-    icon: Sparkles,
-  },
-  {
-    title: "Pricing",
-    href: "/pricing",
-    icon: DollarSign,
-  },
-];
+import { navLinks } from "@/constants/configs";
 
 export function MobileSidebar() {
   return (
@@ -99,12 +74,11 @@ export function MobileSidebar() {
 
           <div className="px-6">
             <div className="space-y-4">
-              {links.map((item) => {
-                const Icon = item.icon;
+              {navLinks.map((item) => {
 
                 return (
                   <Link
-                    key={item.title}
+                    key={item.label}
                     href={item.href}
                     className="
                       group
@@ -128,27 +102,9 @@ export function MobileSidebar() {
                       dark:hover:bg-zinc-900
                     "
                   >
-                    <div className="flex items-center gap-4">
-                      <div
-                        className="
-                          flex
-                          h-12
-                          w-12
-                          items-center
-                          justify-center
-                          rounded-xl
-
-                          bg-purple-100
-                          dark:bg-purple-500/10
-                        "
-                      >
-                        <Icon className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                      </div>
-
-                      <span className="font-medium text-zinc-900 dark:text-white">
-                        {item.title}
-                      </span>
-                    </div>
+                    <p className="ffont-medium text-zinc-900 dark:text-white">
+                        {item.label}
+                    </p>
 
                     <ChevronRight
                       className="

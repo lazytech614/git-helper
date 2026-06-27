@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ToolsPage from "./tools-page";
 
 export const metadata: Metadata = {
-  title: "Developer Tools | Tool Stack",
+  title: "Developer Tools",
   description:
     "Browse free online developer tools including JSON Formatter, SQL Formatter, Regex Tester, Markdown Preview, JWT Debugger, Base64 Encoder, Diff Checker, and more.",
   keywords: [

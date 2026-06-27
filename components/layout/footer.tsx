@@ -1,7 +1,4 @@
-const LEGAL = [
-  { name: "Privacy", href: "/privacy" },
-  { name: "Terms", href: "/terms" },
-];
+import { LEGAL } from "@/constants/configs";
 
 export function Footer() {
   return (

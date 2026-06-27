@@ -1,18 +1,18 @@
 import { cn } from "@/lib/utils"
 
-interface SecondarySectionHeaderProps {
+interface SecondaryHeadingProps {
   title: string
   description?: string
   count?: number
   className?: string
 }
 
-export function SecondarySectionHeader({
+export function SecondaryHeading({
   title,
   description,
   count,
   className,
-}: SecondarySectionHeaderProps) {
+}: SecondaryHeadingProps) {
   return (
     <div className={cn("flex items-end justify-between gap-4", className)}>
       <div>

@@ -21,14 +21,6 @@ const navLinks = [
     label: "Tools",
     href: "/tools",
   },
-  {
-    label: "Features",
-    href: "/features",
-  },
-  {
-    label: "Pricing",
-    href: "/pricing",
-  },
 ];
 
 export function Navbar() {

@@ -11,6 +11,7 @@ import { ModeToggle } from "../providers/mode-toggle";
 import { MobileSidebar } from "./mobile-sidebar";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/constants/configs";
+import { LearningMegaMenu } from "./mega-menu";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -59,6 +60,7 @@ export function Navbar() {
                   </Link>
                 );
               })}
+              <LearningMegaMenu />
             </nav>
           </div>
 

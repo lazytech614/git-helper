@@ -13,14 +13,30 @@ export function CheatsheetSidebar({ sections }: { sections: Section[] }) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-            break;
-          }
+        // If we're at the bottom of the page, always highlight the last section
+        const isAtBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 5;
+
+        if (isAtBottom) {
+          setActiveId(ids[ids.length - 1]);
+          return;
+        }
+
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+          );
+
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id);
         }
       },
-      { rootMargin: "-20% 0px -70% 0px" }
+      {
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0,
+      }
     );
 
     ids.forEach((id) => {
@@ -28,7 +44,22 @@ export function CheatsheetSidebar({ sections }: { sections: Section[] }) {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 5;
+
+      if (isAtBottom) {
+        setActiveId(ids[ids.length - 1]);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [sections]);
 
   return (

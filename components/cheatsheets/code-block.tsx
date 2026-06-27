@@ -6,9 +6,11 @@ import { Check, Copy } from "lucide-react";
 export function CodeBlock({
   code,
   description,
+  language,
 }: {
   code: string;
   description?: string;
+  language?: string;
 }) {
   const { copied, copy } = useCopy();
 
@@ -24,7 +26,13 @@ export function CodeBlock({
       )}
 
       {/* Code + Copy */}
+        <div className="flex items-center gap-1.5 px-3 py-2 bg-[#2d2d2d]">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28ca41]" />
+        </div>
       <div className="relative flex items-start justify-between gap-3 px-4 py-3">
+
         <pre className="text-xs text-zinc-800 dark:text-zinc-200 font-mono leading-relaxed whitespace-pre-wrap break-all">
           {code}
         </pre>

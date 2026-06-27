@@ -15,6 +15,7 @@ import {
 interface PageHeadingProps {
   title: string;
   description?: string;
+  secondaryDescription?: string;
   className?: string;
 }
 
@@ -32,6 +33,7 @@ function formatSegment(segment: string) {
 export function PageHeading({
   title,
   description,
+  secondaryDescription,
   className,
 }: PageHeadingProps) {
   const pathname = usePathname();
@@ -106,6 +108,12 @@ export function PageHeading({
       {description && (
         <p className="max-w-2xl text-zinc-600 dark:text-zinc-400">
           {description}
+        </p>
+      )}
+
+      {secondaryDescription && (
+        <p className="max-w-2xl text-xs text-zinc-400 dark:text-zinc-500">
+          {secondaryDescription}
         </p>
       )}
     </div>

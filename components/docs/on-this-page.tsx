@@ -7,26 +7,75 @@ export function OnThisPage({ headings }: { headings: HeadingBlock[] }) {
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-            break;
-          }
-        }
-      },
-      { rootMargin: "-20% 0px -70% 0px" }
+    const ids = headings.map(({ text }) =>
+      text.toLowerCase().replace(/\s+/g, "-")
     );
 
-    headings.forEach(({ text }) => {
-      const id = text.toLowerCase().replace(/\s+/g, "-");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Always highlight the last heading when we're at the bottom
+        const isAtBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 5;
+
+        if (isAtBottom) {
+          setActiveId(ids[ids.length - 1]);
+          return;
+        }
+
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+          );
+
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0,
+      }
+    );
+
+    ids.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 5;
+
+      if (isAtBottom) {
+        setActiveId(ids[ids.length - 1]);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [headings]);
+
+  useEffect(() => {
+    const updateFromHash = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash) setActiveId(hash);
+    };
+
+    updateFromHash(); // Initial load
+
+    window.addEventListener("hashchange", updateFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", updateFromHash);
+    };
+  }, []);
 
   if (headings.length === 0) return null;
 
@@ -43,6 +92,7 @@ export function OnThisPage({ headings }: { headings: HeadingBlock[] }) {
           <a
             key={id}
             href={`#${id}`}
+            onClick={() => setActiveId(id)}
             className={`flex items-center gap-2 rounded-lg py-1.5 text-xs font-medium transition-all duration-150 ${
               level === 3 ? "pl-6 pr-3" : "px-3"
             } ${

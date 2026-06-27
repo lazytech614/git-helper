@@ -10,6 +10,10 @@ import {
 } from "@/constants/glossary";
 import { Container } from "@/components/shared/container";
 import { Search } from "lucide-react";
+import { PageHeading } from "@/components/shared/page-heading";
+import { StatusBar } from "@/components/shared/satus-bar";
+import { SearchBar } from "@/components/shared/search-bar";
+import { cn } from "@/lib/utils";
 
 // ─── Category colors ──────────────────────────────────────────────────────────
 
@@ -36,16 +40,17 @@ function CategoryFilter({
   onChange: (c: Category) => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 shrink-0">
       {categories.map((cat) => (
         <button
           key={cat}
           onClick={() => onChange(cat)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all duration-150 ${
-            active === cat
-              ? "bg-purple-600 text-white dark:bg-purple-500"
-              : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-          }`}
+          className={cn(
+                      "rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all duration-150",
+                      active === cat
+                        ? "border-transparent bg-linear-to-r from-purple-600 to-violet-600 text-white shadow-sm"
+                        : "border-zinc-200 bg-transparent text-zinc-600 hover:border-purple-300 hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:border-purple-500/40 dark:hover:text-white"
+                    )}
         >
           {cat}
         </button>
@@ -141,7 +146,7 @@ function LetterGroup({
   terms: GlossaryTerm[];
 }) {
   return (
-    <div id={`letter-${letter}`} className="scroll-mt-24">
+    <div id={`letter-${letter}`} className="scroll-mt-24 mt-10">
       {/* Letter heading */}
       <div className="flex items-center gap-3 mb-4">
         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 dark:bg-purple-950/40 text-sm font-extrabold text-purple-600 dark:text-purple-400">
@@ -192,52 +197,40 @@ export default function GlossaryPage() {
   const availableLetters = Object.keys(grouped).sort();
 
   return (
-    <main className="min-h-screen py-16">
+    <main className="min-h-screen bg-white dark:bg-black py-10">
       <Container>
-        {/* Header */}
-        <div className="mb-10 max-w-xl">
-          <span className="inline-flex items-center rounded-full border border-purple-200 dark:border-purple-500/30 bg-purple-50 dark:bg-purple-950/40 px-3 py-1 text-xs font-medium text-purple-600 dark:text-purple-400 mb-4">
-            Reference
-          </span>
-          <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
-            Glossary
-          </h1>
-          <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            Plain-English definitions for developer terminology. Search a term or browse by category.
-          </p>
+        {/* Top row: heading + status */}
+        <div className="flex flex-col gap-4 md:flex-row items-start md:justify-between">
+          <PageHeading
+            title="Glossary"
+            description="Plain-English definitions for developer terminology. Search a term or browse by category."
+          />
+          <div className="text-left md:text-right md:shrink-0">
+            <StatusBar
+              items={glossaryTerms}
+              getName={(term) => term.term}
+              itemLabel="glossary"
+            />
+          </div>
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
-          {/* Search */}
-          <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search terms..."
-              className="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 pl-9 pr-4 py-2 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 outline-none focus:border-purple-400 dark:focus:border-purple-500 transition-colors"
-            />
-          </div>
-
-          {/* Category filter */}
+        <div className="mt-8 flex flex-col gap-3 lg:flex-row lg:items-start lg:gap-4">
+          <SearchBar
+            value={query}
+            onChange={setQuery}
+            placeholder="Search glossary..."
+            className="w-full"
+          />
           <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
         </div>
 
         {/* A–Z jump bar — only shown when not searching */}
         {!query && activeCategory === "all" && (
-          <div className="mb-8">
+          <div className="mt-4">
             <AlphabetBar available={availableLetters} />
           </div>
         )}
-
-        {/* Count */}
-        <p className="text-xs text-zinc-400 dark:text-zinc-500 mb-8">
-          {filtered.length} term{filtered.length !== 1 ? "s" : ""}
-          {activeCategory !== "all" && ` in ${activeCategory}`}
-          {query && ` matching "${query}"`}
-        </p>
 
         {/* Terms */}
         {availableLetters.length > 0 ? (

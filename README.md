@@ -46,8 +46,6 @@ Built with the latest versions of Next.js, TypeScript, and Tailwind CSS v4, the 
 
 ## 📸 Screenshots
 
-> Replace the placeholders below with actual screenshots of your app.
-
 <table>
   <tr>
     <td align="center">

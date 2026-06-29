@@ -9,20 +9,29 @@ Whether it's a bug report, feature request, or pull request, we appreciate your 
 
 - [Code of Conduct](#code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
+- [First Time Contribution](#-first-contribution)
+- [Working on an Issue](#-working-on-an-issue)
+- [Issue Labels](#-issue-labels)
 - [Development Setup](#development-setup)
+- [Project Structure](#project-structure)
 - [Creating a New Tool](#creating-a-new-tool)
+- [Adding Resources](#-adding-resources)
 - [Pull Request Process](#pull-request-process)
 - [Style Guide](#style-guide)
 - [Questions?](#questions)
 
-## Code of Conduct
+---
+
+## ⚖️ Code of Conduct
 
 This project adheres to the [Contributor Covenant](./CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
 
-## How Can I Contribute?
+---
 
-### 🐛 Report Bugs
+## 🛂 How Can I Contribute?
+
+### 1. Report Bugs🐛 
 
 **Before submitting a bug report:**
 - Check the issue tracker (might already be reported)
@@ -40,7 +49,7 @@ By participating, you are expected to uphold this code.
 3. Fill in all requested information
 4. Wait for response from maintainers
 
-### ✨ Suggest Enhancements
+### 2. Suggest Enhancements✨
 
 **Before suggesting a feature:**
 - Check if it already exists or is planned
@@ -54,7 +63,7 @@ By participating, you are expected to uphold this code.
 3. Clearly describe the feature and its benefits
 4. Include mockups or examples if applicable
 
-### 📚 Improve Documentation
+### 3. Improve Documentation📚
 
 Help improve our docs by:
 - Fixing typos and grammar
@@ -63,7 +72,7 @@ Help improve our docs by:
 - Creating guides for common tasks
 - Translating to other languages
 
-### 🔧 Write Code
+### 4. Write Code💻
 
 We're always looking for help with:
 - New tools and utilities
@@ -72,16 +81,61 @@ We're always looking for help with:
 - Test coverage
 - Type safety improvements
 
-## Development Setup
+---
 
-### Prerequisites
+## 🌱 First Contribution?
+
+If you're new to open source, don't worry!
+
+We have plenty of beginner-friendly issues available.
+
+### Getting Started
+
+1. Look for issues labeled **good first issue**
+2. Comment on the issue to get assigned
+3. Fork the repository
+4. Create a new branch
+5. Make your changes
+6. Open a Pull Request
+
+We'll gladly help if you get stuck.
+
+---
+
+## 📌 Working on an Issue
+
+Before starting development:
+
+- Check if someone is already assigned.
+- Leave a comment saying you'd like to work on it.
+- Wait for assignment.
+- Create a feature branch.
+- Submit a PR linked to the issue.
+
+Please avoid working on issues already assigned to someone else unless discussed.
+
+---
+
+## 🏷 Issue Labels
+
+- good first issue — Great for first-time contributors.
+- help wanted — Looking for community help.
+- enhancement — New feature or improvement.
+- bug — Something isn't working.
+- documentation — Documentation improvements.
+
+---
+
+## 🧑‍💻Development Setup
+
+### 1. Prerequisites
 
 - Node.js 18+ (check with `node --version`)
 - npm (comes with Node.js)
 - Git
 - Code editor (VS Code recommended)
 
-### Clone & Setup
+### 2. Clone & Setup
 
 ```bash
 # 1. Fork the repository (click Fork on GitHub)
@@ -101,7 +155,7 @@ npm run dev
 
 Open http://localhost:3000 in your browser.
 
-### Common Commands
+### 3. Common Commands
 
 ```bash
 npm run dev        # Start dev server
@@ -112,170 +166,109 @@ npm run test       # Run tests
 npm run test:watch # Run tests in watch mode
 ```
 
-### Project Structure
+---
 
-```
-src/
+
+## 📂Project Structure
+
+```text
+tool-stack/
+├── .github/                     # GitHub workflows, issue templates & configs
+│
+├── app/                         # Next.js App Router
+│   ├── api/                     # API routes
+│   ├── tools/                   # Developer utility tools
+│   ├── learn/                   # Learning resources
+│   │   ├── cheatsheets/
+│   │   ├── docs/
+│   │   ├── glossary/
+│   │   └── snippets/
+│   ├── resources/               # Curated developer resources
+│   │   ├── ai-tools/
+│   │   ├── boilerplates/
+│   │   ├── browser-extensions/
+│   │   ├── cli-tools/
+│   │   ├── colors/
+│   │   ├── fonts/
+│   │   ├── icons/
+│   │   ├── illustrations/
+│   │   ├── mcp-servers/
+│   │   ├── prompts/
+│   │   ├── starter-kits/
+│   │   ├── templates/
+│   │   └── vscode-extensions/
+│   ├── sitemap.ts
+│   ├── robots.ts
+│   ├── layout.tsx
+│   └── page.tsx
+│
 ├── components/
-│   ├── tools/       # Individual developer tool components
-│   ├── ui/          # shadcn UI components
-│   └── shared/      # Reusable shared components
-├── lib/
-│   ├── utils.ts     # Utility functions
-│   └── tools.ts     # Tool registry
-├── app/
-│   ├── page.tsx     # Home page
-│   └── layout.tsx   # Root layout
-├── styles/
-│   └── globals.css  # Global styles
-└── types/
-    └── index.ts     # TypeScript types
+│   ├── tools/                   # Tool-specific components
+│   ├── learn/                   # Learn section components
+│   ├── resources/               # Resource cards & filters
+│   ├── shared/                  # Shared reusable components
+│   └── ui/                      # shadcn/ui components
+│
+├── constants/
+│   ├── configs/                 # Utility metadata and project configs
+│   ├── learnings/               # Cheatsheets, docs & snippets
+│   ├── resources/               # Resource datasets
+│   └── navigation.ts            # Navigation configuration
+│
+├── hooks/                       # Custom React hooks
+├── lib/                         # Utility functions & helpers
+├── providers/                   # Context providers
+├── public/                      # Images, icons & static assets
+├── styles/                      # Global styles
+├── types/                       # Shared TypeScript types
+│
+├── middleware.ts
+├── next.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+└── package.json
 ```
 
-## Creating a New Tool
+--- 
 
-### Step 1: Create Component
+## 🛠️ Creating a New Tool
 
-Create a new file: `src/components/tools/dev-tools/your-tool.tsx`
+- Create page
+- Create component
+- Create utility functions
+- Register metadata
+- Add navigation
+- Add SEO metadata
+- Test
+- Submit PR
 
-```typescript
-"use client"
+---
 
-import { useState, useMemo } from "react"
-import { Copy, Check } from "lucide-react"
-import { cn } from "@/lib/utils"
+## 📦 Adding Resources
 
-interface Props {
-  // Add props if needed
-}
+Many pages inside ToolStack are powered by TypeScript data files.
 
-export function YourToolComponent() {
-  const [input, setInput] = useState("")
-  const [copied, setCopied] = useState(false)
+You can contribute by adding:
 
-  // Your logic here
+- Templates
+- Boilerplates
+- Starter Kits
+- Browser Extensions
+- VS Code Extensions
+- CLI Tools
+- AI Tools
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+In most cases you only need to update the corresponding file inside:
 
-  return (
-    <div className="flex flex-col gap-4 max-w-3xl">
-      {/* Header */}
-      <div className="border-b border-zinc-200 dark:border-zinc-800 pb-4">
-        <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-          Your Tool Name
-        </h2>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-          Brief description of what it does
-        </p>
-      </div>
+constants/resources/
 
-      {/* Input Section */}
-      <div className="flex flex-col gap-2">
-        <label className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
-          Input
-        </label>
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter your text here..."
-          rows={4}
-          className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/40"
-        />
-      </div>
+No backend changes are required.
 
-      {/* Output Section */}
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <label className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
-            Output
-          </label>
-          <button
-            onClick={() => copyToClipboard(output)}
-            className="text-xs font-medium text-purple-600 hover:text-purple-700 flex items-center gap-1"
-          >
-            {copied ? (
-              <>
-                <Check className="w-3 h-3" /> Copied!
-              </>
-            ) : (
-              <>
-                <Copy className="w-3 h-3" /> Copy
-              </>
-            )}
-          </button>
-        </div>
-        <div className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4 font-mono text-sm min-h-24">
-          {output || "Output will appear here"}
-        </div>
-      </div>
-    </div>
-  )
-}
-```
+---
 
-### Step 2: Adding tool utilities
+## 🪝Pull Request Process
 
-Add all the utilities of the component to the folder 
-`lib/dev-utils/your-component-utils.ts`
-
-### Step 3: Register Tool
-
-Edit `constants/configs/tools.ts`:
-
-##### Before adding/registering the tool please check if the tool is already added in the list
-
-```typescript
-export const ALL_TOOLS: Tool[] = [
-  // Existing tools
-  {
-    id: "commit-generator",
-    name: "Commit Generator",
-    description:
-      "Generate different commit messages from your git diff.",
-    icon: GitCommitIcon,
-    category: "Github",
-    href: "/tools/commit-generator",
-    status: "BETA"
-  },
-]
-```
-
-### Step 4: Add routes
-
-Edit `components/tools/tool-view.tsx`:
-
-```typescript
-import { YourToolComponent } from "./dev-tools/your-tool"
-
-interface ToolViewProps {
-  toolId: string
-}
-
-export function ToolView({ toolId }: ToolViewProps) {
-  switch (toolId) {
-    case "diff-checker":
-      return <DiffCheckerTool />
-    case "base64-url":
-      return <Base64UrlTool />
-    case "json-formatter-validator":
-      return <JsonFormatterValidator />
-    case "commit-generator":
-      return <CommitGenerator />
-    case "your-tool":
-      return <YourToolComponent />
-    // Add new tools here as you build them out
-    default:
-      return <PlaceholderTool toolId={toolId} />
-  }
-}
-```
-## Pull Request Process
-
-### Before You Start
+### 1. Before You Start
 
 1. Create an issue first (discuss major changes) or you can work on a issue that is open
 2. Get approval from maintainers
@@ -284,7 +277,7 @@ export function ToolView({ toolId }: ToolViewProps) {
    git checkout -b feature/your-feature-name
    ```
 
-### Making Changes
+### 2. Making Changes
 
 1. Keep commits atomic and well-described:
    ```bash
@@ -303,7 +296,7 @@ export function ToolView({ toolId }: ToolViewProps) {
    git rebase upstream/main
    ```
 
-### Submitting the PR
+### 3. Submitting the PR
 
 1. Push your branch to your fork:
    ```bash
@@ -321,16 +314,18 @@ export function ToolView({ toolId }: ToolViewProps) {
 
 4. Wait for reviews and respond to feedback
 
-### Merge Criteria
+### 4. Merge Criteria
 
 Your PR will be merged when:
 - ✅ All tests pass
 - ✅ No merge conflicts
 - ✅ Code follows style guide
 
-## Style Guide
+---
 
-### TypeScript
+## 📖Style Guide
+
+### 1. TypeScript
 
 ```typescript
 // Use explicit types
@@ -355,7 +350,7 @@ function toUpperCase(text: string): string {
 }
 ```
 
-### React Components
+### 2. React Components
 
 ```typescript
 // File per component (one per file)
@@ -382,7 +377,7 @@ export function MyComponent({ title, count, onClick }: MyComponentProps) {
 }
 ```
 
-### Styling with Tailwind
+### 3. Styling with Tailwind
 
 ```typescript
 // Use consistent spacing
@@ -407,11 +402,11 @@ className={cn(
 <div style={{...}}>❌</div>
 ```
 
-### Theme Color Preference (Strictly follow this)
+### 4. Theme Color Preference (Strictly follow this)
 
 Check `constans/configs/theme-color-prefernces.ts`
 
-### Comments
+### 5. Comments
 
 ```typescript
 // Good: Explains WHY, not WHAT

@@ -7,18 +7,18 @@ Whether it's a bug report, feature request, or pull request, we appreciate your 
 
 ## 📋 Table of Contents
 
-- [Code of Conduct](#code-of-conduct)
+- [Code of Conduct](#-code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
 - [First Time Contribution](#-first-contribution)
 - [Working on an Issue](#-working-on-an-issue)
 - [Issue Labels](#-issue-labels)
-- [Development Setup](#development-setup)
-- [Project Structure](#project-structure)
+- [Development Setup](#-development-setup)
+- [Project Structure](#-project-structure)
 - [Creating a New Tool](#creating-a-new-tool)
 - [Adding Resources](#-adding-resources)
 - [Pull Request Process](#pull-request-process)
-- [Style Guide](#style-guide)
-- [Questions?](#questions)
+- [Style Guide](#-style-guide)
+- [Questions?](#-questions)
 
 ---
 

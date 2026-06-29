@@ -7,18 +7,17 @@ Whether it's a bug report, feature request, or pull request, we appreciate your 
 
 ## 📋 Table of Contents
 
-- [Code of Conduct](#-code-of-conduct)
-- [How Can I Contribute?](#how-can-i-contribute)
+- [Code of Conduct](#️-code-of-conduct)
+- [How Can I Contribute?](#-how-can-i-contribute)
 - [First Time Contribution](#-first-contribution)
 - [Working on an Issue](#-working-on-an-issue)
 - [Issue Labels](#-issue-labels)
 - [Development Setup](#-development-setup)
 - [Project Structure](#-project-structure)
-- [Creating a New Tool](#creating-a-new-tool)
+- [Creating a New Tool](#️-creating-a-new-tool)
 - [Adding Resources](#-adding-resources)
-- [Pull Request Process](#pull-request-process)
+- [Pull Request Process](#-pull-request-process)
 - [Style Guide](#-style-guide)
-- [Questions?](#-questions)
 
 ---
 
@@ -126,7 +125,7 @@ Please avoid working on issues already assigned to someone else unless discussed
 
 ---
 
-## 🧑‍💻Development Setup
+## 🧑‍💻 Development Setup
 
 ### 1. Prerequisites
 
@@ -169,7 +168,7 @@ npm run test:watch # Run tests in watch mode
 ---
 
 
-## 📂Project Structure
+## 📂 Project Structure
 
 ```text
 tool-stack/
@@ -266,7 +265,7 @@ No backend changes are required.
 
 ---
 
-## 🪝Pull Request Process
+## 🪝 Pull Request Process
 
 ### 1. Before You Start
 
@@ -323,7 +322,7 @@ Your PR will be merged when:
 
 ---
 
-## 📖Style Guide
+## 📖 Style Guide
 
 ### 1. TypeScript
 

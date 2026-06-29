@@ -138,11 +138,13 @@ Built with the latest versions of Next.js, TypeScript, and Tailwind CSS v4, the 
 
 ToolStack is organized into independent modules.
 
-app/
-components/
-constants/
-hooks/
-lib/
+<ul>
+  <li>app</li>
+  <li>components</li>
+  <li>constants</li>
+  <li>hooks</li>
+  <li>lib</li>
+</ul>
 
 Each feature lives in its own directory, making it easy to contribute without understanding the entire codebase.
 

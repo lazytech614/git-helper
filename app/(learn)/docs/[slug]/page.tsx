@@ -7,10 +7,10 @@ import {
   getHeadings,
   categoryLabels,
 } from "@/constants/learnings/docs";
-import { DocsSidebar } from "@/components/docs/docs-sidebar";
-import { DocRenderer } from "@/components/docs/doc-renderer";
-import { OnThisPage } from "@/components/docs/on-this-page";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { DocsSidebar } from "@/components/learn/docs/docs-sidebar";
+import { DocRenderer } from "@/components/learn/docs/doc-renderer";
+import { OnThisPage } from "@/components/learn/docs/on-this-page";
 
 // ─── Static params & metadata ─────────────────────────────────────────────────
 

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import { cheatsheets } from "@/constants/learnings/cheatsheets";
 import { Container } from "@/components/shared/container";
-import { CheatsheetSidebar } from "@/components/cheatsheets/cheatsheet-sidebar";
-import { SectionBlock } from "@/components/cheatsheets/section-block";
 import { PageHeading } from "@/components/shared/page-heading";
 import { StatusBar } from "@/components/shared/satus-bar";
+import { CheatsheetSidebar } from "@/components/learn/cheatsheets/cheatsheet-sidebar";
+import { SectionBlock } from "@/components/learn/cheatsheets/section-block";
 
 // ─── Static Params ────────────────────────────────────────────────────────────
 

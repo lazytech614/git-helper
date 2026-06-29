@@ -3,11 +3,11 @@
 import { useState, useMemo } from "react";
 import { snippets, type Language } from "@/constants/learnings/snippets";
 import { Container } from "@/components/shared/container";
-import { LanguageFilter } from "@/components/snippets/language-filter";
-import { SnippetCard } from "@/components/snippets/snippet-card";
 import { PageHeading } from "@/components/shared/page-heading";
 import { StatusBar } from "@/components/shared/satus-bar";
 import { SearchBar } from "@/components/shared/search-bar";
+import { LanguageFilter } from "@/components/learn/snippets/language-filter";
+import { SnippetCard } from "@/components/learn/snippets/snippet-card";
 
 export default function SnippetsPage() {
   const [query, setQuery] = useState("");

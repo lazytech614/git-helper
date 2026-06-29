@@ -3,12 +3,12 @@
 import { useMemo, useState } from "react";
 import { cheatsheets, type Tag } from "@/constants/learnings/cheatsheets";
 import { Container } from "@/components/shared/container";
-import { TagFilter } from "@/components/cheatsheets/tag-filter";
 import { PageHeading } from "@/components/shared/page-heading";
 import { StatusBar } from "@/components/shared/satus-bar";
 import { SearchBar } from "@/components/shared/search-bar";
 import { ResourceCard } from "@/components/shared/resource-card";
 import { cheatsheetToResourceCard } from "@/lib/cheatsheet-to-resource";
+import { TagFilter } from "@/components/learn/cheatsheets/tag-filter";
 
 export default function CheatsheetsPage() {
   const [activeTag, setActiveTag] = useState<Tag>("all");

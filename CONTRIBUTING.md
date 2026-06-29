@@ -117,7 +117,7 @@ npm run test:watch # Run tests in watch mode
 ```
 src/
 ├── components/
-│   ├── tools/        # Individual tool components
+│   ├── tools/       # Individual developer tool components
 │   ├── ui/          # shadcn UI components
 │   └── shared/      # Reusable shared components
 ├── lib/
@@ -217,9 +217,14 @@ export function YourToolComponent() {
 }
 ```
 
-### Step 2: Register Tool
+### Step 2: Adding tool utilities
 
-Edit `constants/tools.ts`:
+Add all the utilities of the component to the folder 
+`lib/dev-utils/your-component-utils.ts`
+
+### Step 3: Register Tool
+
+Edit `constants/configs/tools.ts`:
 
 ##### Before adding/registering the tool please check if the tool is already added in the list
 
@@ -239,7 +244,7 @@ export const ALL_TOOLS: Tool[] = [
 ]
 ```
 
-### Step 3: Add routes
+### Step 4: Add routes
 
 Edit `components/tools/tool-view.tsx`:
 
@@ -272,7 +277,7 @@ export function ToolView({ toolId }: ToolViewProps) {
 
 ### Before You Start
 
-1. Create an issue first (discuss major changes)
+1. Create an issue first (discuss major changes) or you can work on a issue that is open
 2. Get approval from maintainers
 3. Create a feature branch:
    ```bash
@@ -320,9 +325,7 @@ export function ToolView({ toolId }: ToolViewProps) {
 
 Your PR will be merged when:
 - ✅ All tests pass
-- ✅ At least 1 maintainer approves
 - ✅ No merge conflicts
-- ✅ Documentation updated
 - ✅ Code follows style guide
 
 ## Style Guide
@@ -406,7 +409,7 @@ className={cn(
 
 ### Theme Color Preference (Strictly follow this)
 
-Check constans/theme-color-prefernces.ts
+Check `constans/configs/theme-color-prefernces.ts`
 
 ### Comments
 

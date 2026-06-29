@@ -7,7 +7,6 @@ import {
   getHeadings,
   categoryLabels,
 } from "@/constants/learnings/docs";
-import { Container } from "@/components/shared/container";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { DocRenderer } from "@/components/docs/doc-renderer";
 import { OnThisPage } from "@/components/docs/on-this-page";

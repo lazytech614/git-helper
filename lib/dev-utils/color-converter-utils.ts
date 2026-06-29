@@ -176,7 +176,7 @@ export function rgbToHSV(rgb: RGB): HSV {
   const d = max - min
 
   let h = 0
-  let s = max === 0 ? 0 : d / max
+  const s = max === 0 ? 0 : d / max
   const v = max
 
   if (max !== min) {
@@ -358,7 +358,7 @@ export function getAnalogous(hex: string): string[] | null {
   const hsl = rgbToHSL(rgb)
   const colors: string[] = []
 
-  for (let offset of [-30, 0, 30]) {
+  for (const offset of [-30, 0, 30]) {
     const newHsl = { ...hsl, h: (hsl.h + offset + 360) % 360 }
     colors.push(rgbToHex(hslToRGB(newHsl)))
   }
@@ -376,7 +376,7 @@ export function getTriadic(hex: string): string[] | null {
   const hsl = rgbToHSL(rgb)
   const colors: string[] = []
 
-  for (let offset of [0, 120, 240]) {
+  for (const offset of [0, 120, 240]) {
     const newHsl = { ...hsl, h: (hsl.h + offset) % 360 }
     colors.push(rgbToHex(hslToRGB(newHsl)))
   }

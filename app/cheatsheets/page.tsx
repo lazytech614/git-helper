@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { cheatsheets, type Tag } from "@/constants/learnings/cheatsheets";
 import { Container } from "@/components/shared/container";
 import { TagFilter } from "@/components/cheatsheets/tag-filter";
-import { CheatsheetCard } from "@/components/cheatsheets/cheatsheet-card";
 import { PageHeading } from "@/components/shared/page-heading";
 import { StatusBar } from "@/components/shared/satus-bar";
 import { SearchBar } from "@/components/shared/search-bar";

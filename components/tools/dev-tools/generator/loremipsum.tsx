@@ -199,7 +199,7 @@ export function LoremIpsum() {
               ? "text-zinc-300 dark:text-zinc-700"
               : "text-zinc-500 dark:text-zinc-400"
           )}>
-            Start with "Lorem ipsum…"
+            Start with <code>"Lorem ipsum…"</code>
           </span>
         </label>
       </div>

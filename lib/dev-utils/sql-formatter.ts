@@ -37,7 +37,7 @@ export function formatSQL(sql: string, opts: FormatOptions): string {
   const indent = getIndent(opts.indentStyle)
 
   // Strip comments and collapse whitespace for processing
-  let src = sql
+  const src = sql
     .replace(/--[^\n]*/g, "")
     .replace(/\/\*[\s\S]*?\*\//g, "")
     .replace(/\s+/g, " ")

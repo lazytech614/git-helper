@@ -127,6 +127,28 @@ export function ImageConverter() {
     setDragOver(true)
   }
 
+    // ── Download ──
+    const handleDownload = useCallback(() => {
+      if (!result) return
+      const a = document.createElement("a")
+      a.href = result.dataUrl
+      const baseName = originalFile?.name.replace(/\.[^.]+$/, "") ?? "image"
+      a.download = `${baseName}.${FORMAT_EXT[result.format]}`
+      a.click()
+    }, [result, originalFile])
+
+      // ── Reset ──
+    const handleReset = () => {
+      setOriginalSrc(null)
+      setOriginalFile(null)
+      setImageInfo(null)
+      setResult(null)
+      setError(null)
+      setResizeW("")
+      setResizeH("")
+      if (fileInputRef.current) fileInputRef.current.value = ""
+    }
+
   // ── Clipboard paste ──
   useEffect(() => {
     const handler = async (e: KeyboardEvent) => {
@@ -187,16 +209,6 @@ export function ImageConverter() {
     }
   }, [originalSrc, outFormat, quality, resizeW, resizeH, effectiveBg])
 
-  // ── Download ──
-  const handleDownload = useCallback(() => {
-    if (!result) return
-    const a = document.createElement("a")
-    a.href = result.dataUrl
-    const baseName = originalFile?.name.replace(/\.[^.]+$/, "") ?? "image"
-    a.download = `${baseName}.${FORMAT_EXT[result.format]}`
-    a.click()
-  }, [result, originalFile])
-
   // ── Copy image ──
   const handleCopyImage = useCallback(async () => {
     if (!result) return
@@ -220,18 +232,6 @@ export function ImageConverter() {
       setTimeout(() => setCopiedB64(false), 2000)
     })
   }, [result])
-
-  // ── Reset ──
-  const handleReset = () => {
-    setOriginalSrc(null)
-    setOriginalFile(null)
-    setImageInfo(null)
-    setResult(null)
-    setError(null)
-    setResizeW("")
-    setResizeH("")
-    if (fileInputRef.current) fileInputRef.current.value = ""
-  }
 
   // ── Savings ──
   const savings = useMemo(() => {

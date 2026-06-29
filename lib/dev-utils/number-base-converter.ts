@@ -124,7 +124,7 @@ export function convert(
 
     let bin = absVal.toString(2)
     let oct = absVal.toString(8)
-    let dec = decVal.toString(10)
+    const dec = decVal.toString(10)
     let hex = absVal.toString(16)
 
     if (hexCase === "upper") hex = hex.toUpperCase()

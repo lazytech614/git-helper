@@ -115,7 +115,7 @@ export function UnixTimestampConverter() {
     if (!dateInput) return
 
     try {
-      let dateStr = dateInput
+      const dateStr = dateInput
       const timeStr = timeInput || "00:00:00"
 
       const [hours, minutes, seconds] = timeStr.split(":").map(Number)

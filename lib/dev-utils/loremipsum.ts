@@ -243,7 +243,7 @@ export function computeStats(text: string) {
 export function downloadText(text: string, format: DownloadFormat) {
   let content = text
   let mime = "text/plain"
-  let ext = format
+  const ext = format
 
   if (format === "md") {
     content = text

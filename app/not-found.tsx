@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  ArrowLeft,
   Home,
   Search,
   Wrench,
@@ -119,7 +118,7 @@ export default function NotFound() {
             dark:text-zinc-400
           "
         >
-          The route you're looking for may have been moved,
+          The route you&apos;re looking for may have been moved,
           deleted, or never existed. Try exploring one of
           the available developer tools instead.
         </p>

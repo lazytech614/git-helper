@@ -1,15 +1,13 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo } from "react";
 import {
   glossaryTerms,
   categories,
-  alphabet,
   type Category,
   type GlossaryTerm,
 } from "@/constants/learnings/glossary";
 import { Container } from "@/components/shared/container";
-import { Search } from "lucide-react";
 import { PageHeading } from "@/components/shared/page-heading";
 import { StatusBar } from "@/components/shared/satus-bar";
 import { SearchBar } from "@/components/shared/search-bar";

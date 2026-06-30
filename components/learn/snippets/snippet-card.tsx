@@ -4,7 +4,7 @@ import { Pin, PinOff } from "lucide-react";
 
 import { Snippet } from "@/constants/learnings/snippets";
 import { LanguageBadge } from "./language-badge";
-import { CodeBlock } from "../cheatsheets/code-block";
+import { CodeBlock } from "../../shared/code-block";
 import { cn } from "@/lib/utils";
 
 interface SnippetCardProps {

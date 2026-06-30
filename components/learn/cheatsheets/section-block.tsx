@@ -1,5 +1,5 @@
 import { type Section } from "@/constants/learnings/cheatsheets";
-import { CodeBlock } from "./code-block";
+import { CodeBlock } from "../../shared/code-block";
 
 export function SectionBlock({ section }: { section: Section }) {
   const id = section.title.toLowerCase().replace(/\s+/g, "-");

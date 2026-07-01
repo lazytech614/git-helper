@@ -1,4 +1,4 @@
-import { type Section } from "@/constants/learnings/cheatsheets";
+import { CheatsheetSection } from "@/content/learning/cheatsheets";
 import { CodeBlock } from "../../shared/code-block";
 import { BundledLanguage } from "shiki";
 
@@ -6,7 +6,7 @@ export function SectionBlock({
   section,
   language,
 }: {
-  section: Section;
+  section: CheatsheetSection;
   language: BundledLanguage;
 }) {
   const id = section.title.toLowerCase().replace(/\s+/g, "-");

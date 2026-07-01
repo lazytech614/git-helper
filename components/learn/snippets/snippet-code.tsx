@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Snippet } from "@/constants/learnings/snippets";
 import { getShikiTheme, highlightCode } from "@/lib/shiki";
 import { useTheme } from "next-themes";
+import { Snippet } from "@/content/learning/snippets/types";
 
 interface Props {
   snippet: Snippet;

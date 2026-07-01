@@ -8,15 +8,10 @@ import { cn } from "@/lib/utils";
 import { ContentCardProps } from "@/types/content-card.types";
 import { CARD_COLORS } from "@/constants/configs/resource-card-colors";
 
-export function ContentCard({
-  item,
-  clickable = true,
-  pin,
-}: ContentCardProps) {
+export function ContentCard({ item, clickable = true, pin }: ContentCardProps) {
   const Icon = item.icon || MdKeyboardDoubleArrowRight;
 
-  const primaryColor =
-    CARD_COLORS[item.badges[0]?.color ?? "gray"];
+  const primaryColor = CARD_COLORS[item.badges[0]?.color ?? "gray"];
 
   return (
     <div
@@ -29,7 +24,7 @@ export function ContentCard({
         "hover:border-purple-300",
         "dark:hover:border-purple-500/30",
         "hover:shadow-lg",
-        "dark:hover:shadow-purple-500/10"
+        "dark:hover:shadow-purple-500/10",
       )}
     >
       {pin && (
@@ -37,17 +32,13 @@ export function ContentCard({
           onClick={pin.onToggle}
           aria-label={pin.pinned ? "Unpin" : "Pin"}
           className={cn(
-            "absolute right-4 top-4 rounded-full p-1.5 transition-all duration-200",
+            "absolute top-4 right-4 rounded-full p-1.5 transition-all duration-200",
             pin.pinned
               ? "bg-purple-100 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400"
-              : "text-zinc-400 sm:opacity-0 group-hover:opacity-100 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+              : "text-zinc-400 group-hover:opacity-100 hover:bg-zinc-100 hover:text-zinc-700 sm:opacity-0 dark:hover:bg-zinc-800 dark:hover:text-zinc-300",
           )}
         >
-          {pin.pinned ? (
-            <PinOff className="h-4 w-4" />
-          ) : (
-            <Pin className="h-4 w-4" />
-          )}
+          {pin.pinned ? <PinOff className="h-4 w-4" /> : <Pin className="h-4 w-4" />}
         </button>
       )}
 
@@ -62,7 +53,7 @@ export function ContentCard({
             className={cn(
               "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg",
               primaryColor.iconBg,
-              primaryColor.iconColor
+              primaryColor.iconColor,
             )}
           >
             <Icon className="h-5 w-5" />
@@ -77,7 +68,7 @@ export function ContentCard({
                   key={badge.label}
                   className={cn(
                     "inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium",
-                    colors.badge
+                    colors.badge,
                   )}
                 >
                   {badge.label}
@@ -95,7 +86,7 @@ export function ContentCard({
               <span
                 className={cn(
                   "rounded-md px-2 py-0.5 text-xs font-medium",
-                  CARD_COLORS[item.status.color].badge
+                  CARD_COLORS[item.status.color].badge,
                 )}
               >
                 {item.status.label}
@@ -107,7 +98,7 @@ export function ContentCard({
         {/* Main */}
 
         <div className="space-y-2">
-          <h3 className="text-lg font-extrabold uppercase leading-tight text-zinc-900 dark:text-white sm:text-xl">
+          <h3 className="text-lg leading-tight font-extrabold text-zinc-900 uppercase sm:text-xl dark:text-white">
             {item.title}
           </h3>
 
@@ -118,26 +109,18 @@ export function ContentCard({
 
         {/* Page specific content */}
 
-        {item.content && (
-          <div className="mt-2">
-            {item.content}
-          </div>
-        )}
+        {item.content && <div className="mt-2">{item.content}</div>}
 
         <div className="flex-1" />
       </Link>
-      
+
       {/* Optional actions */}
-      {item.actions && (
-        <div className="mt-3">
-          {item.actions}
-        </div>
-      )}
+      {item.actions && <div className="mt-3">{item.actions}</div>}
 
       {/* Footer */}
 
       {clickable && (
-        <div className="mt-4 flex translate-y-1 items-center gap-2 text-[10px] uppercase text-zinc-900 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-80 dark:text-white">
+        <div className="mt-4 flex translate-y-1 items-center gap-2 text-[10px] text-zinc-900 uppercase opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-80 dark:text-white">
           <span>{item.footerLabel ?? "Open"}</span>
 
           <MdKeyboardDoubleArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />

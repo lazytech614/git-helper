@@ -2,7 +2,7 @@
 
 import { Pin, PinOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Snippet } from "@/constants/learnings/snippets";
+import { Snippet } from "@/content/learning/snippets/types";
 
 interface Props {
   snippet: Snippet;

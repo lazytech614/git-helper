@@ -1,13 +1,16 @@
 "use client";
 
+import { BundledLanguage } from "shiki";
+
 import { Container } from "@/components/shared/container";
 import { PageHeading } from "@/components/shared/page-heading";
 import { SearchBar } from "@/components/shared/search-bar";
 import { CategoryFilter } from "@/components/shared/category-filter";
 import { StatusBar } from "@/components/shared/satus-bar";
 
-import { snippets, Language } from "@/constants/learnings/snippets";
-
+import { snippets } from "@/content/learning/snippets";
+import { snippetLanguages } from "@/content/learning/snippets/languages";
+import { getSnippetsByTag } from "@/content/learning/snippets/helpers";
 import { useContentFilter } from "@/hooks/useContentFilters";
 import { useSelectedContent } from "@/hooks/useSelectedContent";
 
@@ -60,6 +63,13 @@ export default function SnippetsPage() {
     getId: (snippet) => snippet.id,
   });
 
+  // Related snippets: same primary tag, excluding the selected one
+  const related = selected
+    ? getSnippetsByTag(selected.tags[0])
+        .filter((s) => s.id !== selected.id)
+        .slice(0, 4)
+    : [];
+
   return (
     <main className="min-h-screen bg-white py-10 dark:bg-black">
       <Container>
@@ -85,9 +95,9 @@ export default function SnippetsPage() {
           />
 
           <CategoryFilter
-            categories={[...new Set(snippets.map((snippet) => snippet.language))]}
+            categories={snippetLanguages}
             selected={language}
-            onChange={(value) => setLanguage(value as Language | "All")}
+            onChange={(value) => setLanguage(value as BundledLanguage | "All")}
           />
         </div>
 
@@ -120,6 +130,8 @@ export default function SnippetsPage() {
                   togglePin(selected.id);
                 }
               }}
+              related={related}
+              onSelectRelated={(id) => setSelectedId(id)}
             />
           }
         />

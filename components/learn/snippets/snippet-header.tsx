@@ -1,4 +1,4 @@
-import { Snippet } from "@/constants/learnings/snippets";
+import { Snippet } from "@/content/learning/snippets/types";
 
 interface Props {
   snippet: Snippet;

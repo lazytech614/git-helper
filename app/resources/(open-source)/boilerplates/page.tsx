@@ -9,9 +9,9 @@ import { SecondaryHeading } from "@/components/shared/secondary-heading";
 import { ContentGrid } from "@/components/shared/content-grid";
 import { ContentCard } from "@/components/shared/content-card";
 
-import { boilerplates, Boilerplate } from "@/constants/resources/boilerplates";
 import { boilerplateToContentCard } from "@/lib/content-mappers/boilerplate-to-content";
 import { useContentFilter } from "@/hooks/useContentFilters";
+import { Boilerplate, boilerplates } from "@/content/resources/boilerplates";
 
 export default function BoilerplatesPage() {
   const {
@@ -36,12 +36,8 @@ export default function BoilerplatesPage() {
       boilerplate.category.toLowerCase().includes(q) ||
       boilerplate.difficulty.toLowerCase().includes(q) ||
       boilerplate.license.toLowerCase().includes(q) ||
-      boilerplate.stack.some((tech) =>
-        tech.toLowerCase().includes(q)
-      ) ||
-      boilerplate.includes.some((item) =>
-        item.toLowerCase().includes(q)
-      ),
+      boilerplate.stack.some((tech) => tech.toLowerCase().includes(q)) ||
+      boilerplate.includes.some((item) => item.toLowerCase().includes(q)),
   });
 
   const renderBoilerplate = (boilerplate: Boilerplate) => (
@@ -57,16 +53,16 @@ export default function BoilerplatesPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black py-10">
+    <main className="min-h-screen bg-white py-10 dark:bg-black">
       <Container>
         {/* Header */}
-        <div className="flex flex-col gap-4 md:flex-row items-start md:justify-between">
+        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
           <PageHeading
             title="Boilerplates"
             description="Kickstart projects with scalable boilerplate codebases."
           />
 
-          <div className="text-left md:text-right md:shrink-0">
+          <div className="text-left md:shrink-0 md:text-right">
             <StatusBar
               items={boilerplates}
               getName={(boilerplate) => boilerplate.name}
@@ -85,11 +81,7 @@ export default function BoilerplatesPage() {
           />
 
           <CategoryFilter
-            categories={[
-              ...new Set(
-                boilerplates.map((boilerplate) => boilerplate.category)
-              ),
-            ]}
+            categories={[...new Set(boilerplates.map((boilerplate) => boilerplate.category))]}
             selected={category}
             onChange={setCategory}
           />
@@ -100,11 +92,7 @@ export default function BoilerplatesPage() {
             <SecondaryHeading
               title="Results"
               count={filtered.length}
-              description={
-                filtered.length === 0
-                  ? "No boilerplates match your search."
-                  : undefined
-              }
+              description={filtered.length === 0 ? "No boilerplates match your search." : undefined}
             />
 
             <div className="mt-5">
@@ -137,11 +125,7 @@ export default function BoilerplatesPage() {
 
             <section className={pinned.length > 0 ? "mt-12" : "mt-10"}>
               <SecondaryHeading
-                title={
-                  pinned.length
-                    ? "All Other Boilerplates"
-                    : "All Boilerplates"
-                }
+                title={pinned.length ? "All Other Boilerplates" : "All Boilerplates"}
                 description={
                   pinned.length
                     ? "Browse the remaining boilerplates below."

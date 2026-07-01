@@ -9,7 +9,7 @@ import { ContentCard } from "@/components/shared/content-card";
 import { ContentGrid } from "@/components/shared/content-grid";
 import { TagFilter } from "@/components/shared/tag-filter";
 
-import { cheatsheets, type Cheatsheet } from "@/constants/learnings/cheatsheets";
+import { cheatsheets, cheatsheetTags, type Cheatsheet } from "@/content/learning/cheatsheets";
 
 import { cheatsheetToContentCard } from "@/lib/content-mappers/cheatsheet-to-content";
 import { useContentFilter } from "@/hooks/useContentFilters";
@@ -34,7 +34,8 @@ export default function CheatsheetsPage() {
     matchesSearch: (sheet, q) =>
       sheet.title.toLowerCase().includes(q) ||
       sheet.description.toLowerCase().includes(q) ||
-      sheet.tag.toLowerCase().includes(q),
+      sheet.tag.toLowerCase().includes(q) ||
+      sheet.sections.some((section) => section.title.toLowerCase().includes(q)),
   });
 
   const renderCheatsheet = (sheet: Cheatsheet) => (
@@ -49,16 +50,16 @@ export default function CheatsheetsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black py-10">
+    <main className="min-h-screen bg-white py-10 dark:bg-black">
       <Container>
         {/* Header */}
-        <div className="flex flex-col gap-4 md:flex-row items-start md:justify-between">
+        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
           <PageHeading
             title="Cheatsheets"
             description="Quick syntax references for the tools you use every day. No fluff, just the commands and patterns you actually need."
           />
 
-          <div className="text-left md:text-right md:shrink-0">
+          <div className="text-left md:shrink-0 md:text-right">
             <StatusBar
               items={cheatsheets}
               getName={(sheet) => sheet.title}
@@ -76,10 +77,7 @@ export default function CheatsheetsPage() {
             className="w-full lg:max-w-xs"
           />
 
-          <TagFilter
-            active={activeTag}
-            onChange={setActiveTag}
-          />
+          <TagFilter active={activeTag} onChange={setActiveTag} tags={cheatsheetTags} />
         </div>
 
         {isFiltering ? (
@@ -87,11 +85,7 @@ export default function CheatsheetsPage() {
             <SecondaryHeading
               title="Results"
               count={filtered.length}
-              description={
-                filtered.length === 0
-                  ? "No cheatsheets match your search."
-                  : undefined
-              }
+              description={filtered.length === 0 ? "No cheatsheets match your search." : undefined}
             />
 
             <div className="mt-5">
@@ -124,11 +118,7 @@ export default function CheatsheetsPage() {
 
             <section className={pinned.length > 0 ? "mt-12" : "mt-10"}>
               <SecondaryHeading
-                title={
-                  pinned.length
-                    ? "All Other Cheatsheets"
-                    : "All Cheatsheets"
-                }
+                title={pinned.length ? "All Other Cheatsheets" : "All Cheatsheets"}
                 description={
                   pinned.length
                     ? "Browse the remaining cheatsheets below."

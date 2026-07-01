@@ -25,8 +25,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "Developer Code Snippets | Tool Stack",
-    description:
-      "Reusable code examples for modern web development.",
+    description: "Reusable code examples for modern web development.",
     url: "https://tool-stack-kappa.vercel.app/snippets",
   },
 };

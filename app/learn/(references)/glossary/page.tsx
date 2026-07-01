@@ -4,10 +4,11 @@ import { useMemo } from "react";
 
 import {
   glossaryTerms,
-  categories,
-  type Category,
+  glossaryCategories,
+  type GlossaryCategoryFilter,
   type GlossaryTerm,
-} from "@/constants/learnings/glossary";
+} from "@/content/learning/glossary";
+import { getGlossaryTerm } from "@/content/learning/glossary/helpers";
 
 import { Container } from "@/components/shared/container";
 import { PageHeading } from "@/components/shared/page-heading";
@@ -15,24 +16,17 @@ import { StatusBar } from "@/components/shared/satus-bar";
 import { SearchBar } from "@/components/shared/search-bar";
 import { CategoryFilter } from "@/components/shared/category-filter";
 import { useContentFilter } from "@/hooks/useContentFilters";
-import Link from "next/link";
-
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Category colors
 // ─────────────────────────────────────────────────────────────────────────────
 
 const categoryColors: Record<string, string> = {
-  networking:
-    "bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400",
-  javascript:
-    "bg-yellow-50 text-yellow-600 dark:bg-yellow-950/40 dark:text-yellow-500",
-  devops:
-    "bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400",
-  database:
-    "bg-green-50 text-green-600 dark:bg-green-950/40 dark:text-green-400",
-  patterns:
-    "bg-purple-50 text-purple-600 dark:bg-purple-950/40 dark:text-purple-400",
+  networking: "bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400",
+  javascript: "bg-yellow-50 text-yellow-600 dark:bg-yellow-950/40 dark:text-yellow-500",
+  devops: "bg-orange-50 text-orange-600 dark:bg-orange-950/40 dark:text-orange-400",
+  database: "bg-green-50 text-green-600 dark:bg-green-950/40 dark:text-green-400",
+  patterns: "bg-purple-50 text-purple-600 dark:bg-purple-950/40 dark:text-purple-400",
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -46,13 +40,13 @@ function AlphabetBar({ available }: { available: string[] }) {
         const active = available.includes(letter);
 
         return active ? (
-          <Link
+          <a
             key={letter}
             href={`#letter-${letter}`}
             className="flex h-7 w-7 items-center justify-center rounded-md text-xs font-semibold text-purple-600 transition-colors hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-950/40"
           >
             {letter}
-          </Link>
+          </a>
         ) : (
           <span
             key={letter}
@@ -73,17 +67,11 @@ function AlphabetBar({ available }: { available: string[] }) {
 function TermCard({ term }: { term: GlossaryTerm }) {
   return (
     <div
-      className="
-      rounded-2xl border border-zinc-200 bg-white p-5
-      transition-all duration-200
-      hover:border-purple-300 hover:shadow-sm hover:shadow-purple-100/40
-      dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-purple-500/40
-    "
+      id={`term-${term.id}`}
+      className="scroll-mt-24 rounded-2xl border border-zinc-200 bg-white p-5 transition-all duration-200 hover:border-purple-300 hover:shadow-sm hover:shadow-purple-100/40 dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-purple-500/40"
     >
       <div className="mb-2 flex items-start justify-between gap-3">
-        <h3 className="text-sm font-bold text-zinc-900 dark:text-white">
-          {term.term}
-        </h3>
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-white">{term.term}</h3>
 
         <span
           className={`inline-flex shrink-0 items-center rounded-md px-2 py-0.5 text-[11px] font-semibold capitalize ${
@@ -94,24 +82,26 @@ function TermCard({ term }: { term: GlossaryTerm }) {
         </span>
       </div>
 
-      <p className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
-        {term.definition}
-      </p>
+      <p className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">{term.definition}</p>
 
       {term.related && term.related.length > 0 && (
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] font-medium text-zinc-400 dark:text-zinc-500">
-            Related:
-          </span>
+          <span className="text-[11px] font-medium text-zinc-400 dark:text-zinc-500">Related:</span>
 
-          {term.related.map((r) => (
-            <span
-              key={r}
-              className="rounded-md bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400"
-            >
-              {r}
-            </span>
-          ))}
+          {term.related.map((id) => {
+            const relatedTerm = getGlossaryTerm(id);
+            if (!relatedTerm) return null;
+
+            return (
+              <a
+                key={id}
+                href={`#term-${id}`}
+                className="rounded-md bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-zinc-500 transition-colors hover:bg-purple-100 hover:text-purple-700 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-purple-950/40 dark:hover:text-purple-400"
+              >
+                {relatedTerm.term}
+              </a>
+            );
+          })}
         </div>
       )}
     </div>
@@ -122,13 +112,7 @@ function TermCard({ term }: { term: GlossaryTerm }) {
 // Letter Group
 // ─────────────────────────────────────────────────────────────────────────────
 
-function LetterGroup({
-  letter,
-  terms,
-}: {
-  letter: string;
-  terms: GlossaryTerm[];
-}) {
+function LetterGroup({ letter, terms }: { letter: string; terms: GlossaryTerm[] }) {
   return (
     <div id={`letter-${letter}`} className="mt-10 scroll-mt-24">
       <div className="mb-4 flex items-center gap-3">
@@ -166,16 +150,19 @@ export default function GlossaryPage() {
     matchesSearch: (term, q) =>
       term.term.toLowerCase().includes(q) ||
       term.definition.toLowerCase().includes(q) ||
-      term.related?.some((r) => r.toLowerCase().includes(q)) ||
+      term.related?.some((id) => getGlossaryTerm(id)?.term.toLowerCase().includes(q)) ||
       false,
   });
 
   const grouped = useMemo(() => {
-    return filtered.reduce((acc, term) => {
-      const letter = term.term[0].toUpperCase();
-      (acc[letter] ??= []).push(term);
-      return acc;
-    }, {} as Record<string, GlossaryTerm[]>);
+    return filtered.reduce(
+      (acc, term) => {
+        const letter = term.term[0].toUpperCase();
+        (acc[letter] ??= []).push(term);
+        return acc;
+      },
+      {} as Record<string, GlossaryTerm[]>,
+    );
   }, [filtered]);
 
   const availableLetters = Object.keys(grouped).sort();
@@ -190,11 +177,7 @@ export default function GlossaryPage() {
           />
 
           <div className="text-left md:shrink-0 md:text-right">
-            <StatusBar
-              items={glossaryTerms}
-              getName={(term) => term.term}
-              itemLabel="glossary"
-            />
+            <StatusBar items={glossaryTerms} getName={(term) => term.term} itemLabel="glossary" />
           </div>
         </div>
 
@@ -207,13 +190,13 @@ export default function GlossaryPage() {
           />
 
           <CategoryFilter
-            categories={categories.filter((c) => c !== "all")}
+            categories={glossaryCategories.filter((c) => c !== "all")}
             selected={category}
-            onChange={(value) => setCategory(value as Category | "All")}
+            onChange={(value) => setCategory(value as GlossaryCategoryFilter)}
           />
         </div>
 
-        {!search && category === "All" && (
+        {!search && category === "all" && (
           <div className="mt-4">
             <AlphabetBar available={availableLetters} />
           </div>
@@ -221,17 +204,11 @@ export default function GlossaryPage() {
 
         {availableLetters.length > 0 ? (
           availableLetters.map((letter) => (
-            <LetterGroup
-              key={letter}
-              letter={letter}
-              terms={grouped[letter]}
-            />
+            <LetterGroup key={letter} letter={letter} terms={grouped[letter]} />
           ))
         ) : (
           <div className="flex flex-col items-center justify-center py-24 text-center">
-            <p className="text-sm font-medium text-zinc-900 dark:text-white">
-              No terms found
-            </p>
+            <p className="text-sm font-medium text-zinc-900 dark:text-white">No terms found</p>
 
             <p className="mt-1 text-xs text-zinc-400 dark:text-zinc-500">
               Try a different search or category.
@@ -240,7 +217,7 @@ export default function GlossaryPage() {
             <button
               onClick={() => {
                 setSearch("");
-                setCategory("All");
+                setCategory("all");
               }}
               className="mt-4 text-xs font-medium text-purple-600 hover:underline dark:text-purple-400"
             >

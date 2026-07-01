@@ -6,7 +6,7 @@ import {
   getDocsByCategory,
   getHeadings,
   categoryLabels,
-} from "@/constants/learnings/docs";
+} from "@/content/learning/docs";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { DocsSidebar } from "@/components/learn/docs/docs-sidebar";
 import { DocRenderer } from "@/components/learn/docs/doc-renderer";
@@ -104,7 +104,7 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
           <div className="mt-12 flex items-center justify-between gap-4 border-t border-zinc-100 pt-6 dark:border-zinc-800">
             {prev ? (
               <Link
-                href={`/docs/${prev.slug}`}
+                href={`/learn/docs/${prev.slug}`}
                 className="group flex items-center gap-2 text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
               >
                 <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
@@ -116,7 +116,7 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
 
             {next ? (
               <Link
-                href={`/docs/${next.slug}`}
+                href={`/learn/docs/${next.slug}`}
                 className="group flex items-center gap-2 text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
               >
                 <span>{next.title}</span>

@@ -1,8 +1,8 @@
 "use client";
 
-import { type ContentBlock } from "@/constants/learnings/docs";
 import { Info, Lightbulb, AlertTriangle, AlertOctagon } from "lucide-react";
 import { CodeBlock } from "../../shared/code-block";
+import { ContentBlock } from "@/content/learning/docs";
 
 // ─── Callout ─────────────────────────────────────────────────────────────────
 

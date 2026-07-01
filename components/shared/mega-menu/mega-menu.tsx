@@ -71,7 +71,7 @@ export function MegaMenu({
             sections={sections}
             footer={footer}
             columns={columns}
-            width={width}
+            width={width ?? "1200px"}
             align={align}
         />
       )}

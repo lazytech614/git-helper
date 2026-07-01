@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from "react";
 
 import { MegaMenuFooter, MegaMenuSection as Section } from "@/types/mega-menu.types";
 import { MegaMenuSection } from "./mega-menu-section";
+import { cn } from "@/lib/utils";
 
 interface Props {
   sections: Section[];
@@ -24,13 +25,12 @@ export function MegaMenuPanel({
   const panelRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
 
-  const totalColumns = columns ?? sections.length;
-  const panelWidth = width ?? `${Math.max(totalColumns * 20, 40)}rem`;
+  const maxWidth = width ?? "1200px";
 
-  // After render, check if panel overflows viewport and compute correction
   useEffect(() => {
     const el = panelRef.current;
     if (!el) return;
+
 
     const rect = el.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
@@ -52,6 +52,19 @@ export function MegaMenuPanel({
       ? "right-0"
       : "left-1/2 -translate-x-1/2";
 
+  const totalColumns = columns ?? sections.length;
+
+  const gridClass =
+    totalColumns <= 1
+      ? "grid-cols-1"
+      : totalColumns === 2
+      ? "grid-cols-1 md:grid-cols-2"
+      : totalColumns === 3
+      ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+      : totalColumns === 4
+      ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"
+      : "grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5";
+
   return (
     <div
       ref={panelRef}
@@ -60,15 +73,16 @@ export function MegaMenuPanel({
         rounded-2xl border border-zinc-200/60
         bg-white/95 shadow-xl shadow-zinc-200/50 backdrop-blur-xl
         dark:border-zinc-800/60 dark:bg-zinc-950/95 dark:shadow-black/40
-        animate-in fade-in slide-in-from-top-2 duration-200
+        animate-in fade-in slide-in-from-top-2 duration-200 pr-2
         ${alignmentClass}
       `}
       style={{
-        width: panelWidth,
-        // Apply overflow correction on top of any existing transform
-        transform: align === "center"
-          ? `translateX(calc(-50% + ${offset}px))`
-          : `translateX(${offset}px)`,
+        width: `min(${maxWidth}, calc(100vw - 8rem))`,
+        maxWidth: "calc(100vw - 8rem)",
+        transform:
+          align === "center"
+            ? `translateX(calc(-50% + ${offset}px))`
+            : `translateX(${offset}px)`,
       }}
     >
       {/* Arrow */}
@@ -82,10 +96,7 @@ export function MegaMenuPanel({
       />
 
       {/* Sections */}
-      <div
-        className="grid gap-0 p-3"
-        style={{ gridTemplateColumns: `repeat(${totalColumns}, minmax(0,1fr))` }}
-      >
+      <div className={cn("grid gap-4 p-4", gridClass)}>
         {sections.map((section) => (
           <MegaMenuSection key={section.id} section={section} />
         ))}

@@ -41,15 +41,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Developer Resources | Tool Stack",
-    description:
-      "The ultimate collection of resources for modern developers.",
+    description: "The ultimate collection of resources for modern developers.",
   },
 };
 
-export default function ResourcesLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ResourcesLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
